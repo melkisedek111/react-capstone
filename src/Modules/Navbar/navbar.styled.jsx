@@ -1,6 +1,40 @@
 import styled, { css } from "styled-components";
 // import { devices, ColorPallets } from "../../utils/constants/css.constants";
-import { ColorPallets, devices, fontStyle } from "../../utils/constants/css.constants";
+import {
+	ColorPallets,
+	devices,
+	fontStyle,
+} from "../../utils/constants/css.constants";
+
+const NavbarLinksDefault = css`
+	${(props) =>
+		props.isShowLinks &&
+		css`
+			display: ${(props) => (props.isShowLinks ? "flex" : "none")};
+			/* display: flex; */
+			flex-direction: column;
+			position: absolute;
+			background-color: #fff;
+			color: ${ColorPallets.highlights};
+			width: 100%;
+			z-index: 10;
+			top: 100%;
+
+			> li {
+				cursor: pointer;
+				text-align: center;
+				display: block;
+				padding: 15px 0;
+				border-bottom: 0.5 solid #000;
+				width: 100%;
+				height: 100%;
+				&:hover:not(:last-child) {
+					background-color: ${ColorPallets.highlights};
+					color: #fff;
+				}
+			}
+		`}
+`;
 
 export const NavbarContactContainer = styled.div`
 	border-bottom: 0.5px solid #ffffff91;
@@ -20,13 +54,13 @@ export const NavbarContactContainer = styled.div`
 
 		@media ${devices.tablet} {
 			grid-template-columns: 1fr 1fr 1fr;
-			padding: 20px;
+			padding: 20px 235px;
 			> div {
 				justify-content: center;
 			}
 		}
 
-		@media ${devices.tablet} {
+		@media ${devices.laptop} {
 			padding: 20px 235px;
 		}
 
@@ -95,6 +129,16 @@ export const Navbar = styled.div`
 	@media ${devices.tablet} {
 		display: none;
 	}
+
+	@media ${devices.laptop} {
+		display: grid;
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		display: grid;
+		padding: 20px 235px;
+	}
 `;
 
 export const NavbarLinks = styled.ul`
@@ -110,29 +154,21 @@ export const NavbarLinks = styled.ul`
 	padding: 0;
 
 	@media ${devices.mobileM} {
-		display: flex;
-		flex-direction: column;
-		position: absolute;
-		background-color: #fff;
-		color: ${ColorPallets.highlights};
-		width: 100%;
-		z-index: 10;
-		top: 0;
-		> li {
-			display: block;
-			margin: 15px 0;
-			border-bottom: 0.5 solid #000;
+		display: none;
+		${NavbarLinksDefault};
+	}
 
-			&:hover {
-				background-color: ${ColorPallets.highlights};
-				color: #fff;
-			}
-		}
+	@media ${devices.tablet} {
+		display: none;
+		${NavbarLinksDefault};
+	}
+
+	@media ${devices.laptop} {
+		display: flex;
 	}
 `;
 
 export const NavbarResponsive = styled.div`
-	
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -140,6 +176,7 @@ export const NavbarResponsive = styled.div`
 		color: #fff;
 		font-size: 50px;
 		padding-left: 20px;
+		cursor: pointer;
 	}
 	> div {
 		padding-right: 20px;

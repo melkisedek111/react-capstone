@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
-import { ColorPallets, fontStyle } from "../../utils/constants/css.constants";
+import {
+	ColorPallets,
+	devices,
+	fontStyle,
+} from "../../utils/constants/css.constants";
 
 const DefaultButtonStyle = css`
 	background-color: #fff;
@@ -38,18 +42,71 @@ export const MainContainer = styled.main`
 	position: relative;
 	overflow: hidden;
 
+	@media ${devices.mobileM} {
+		padding: 0 20px;
+		grid-template-columns: 1fr;
+	}
+
+	@media ${devices.tablet} {
+		padding: 0 20px;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media ${devices.laptop} {
+		padding: 0 50px;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 0 235px;
+		grid-template-columns: 1fr 1fr;
+	}
+
 	> img {
 		position: absolute;
 		right: 0;
+
+		@media ${devices.mobileM} {
+			opacity: 0.5;
+			height: 400px;
+			bottom: 0;
+		}
+
+		@media ${devices.tablet} {
+		}
+
+		@media ${devices.laptop} {
+			height: 900px;
+			top: 0;
+		}
+		@media ${devices.desktopM} {
+			height: 1188px;
+			top: 0;
+		}
 	}
 `;
 
 export const MainContainerDescription = styled.div`
+	width: 100%;
+	z-index: 10;
+	overflow-wrap: break-word;
 	> h1 {
-		font-family: ${fontStyle.primary};
-		font-size: 70px;
 		color: #fff;
-		font-weight: bolder;
+
+		@media ${devices.mobileM} {
+			font-size: 2em;
+		}
+
+		@media ${devices.tablet} {
+			font-size: 3em;
+		}
+
+		@media ${devices.laptop} {
+			font-family: ${fontStyle.primary};
+			font-size: 4.375rem;
+			color: #fff;
+			font-weight: bolder;
+		}
 	}
 `;
 
@@ -58,7 +115,7 @@ export const ChipContainer = styled.div`
 	background-color: rgba(255, 255, 255, 0.20);
 	border-radius: 30px;
 	padding: 10px 30px;
-	max-width: 600px;
+	/* max-width: 600px; */
 	> h5 {
 		background-color: #fcfdf2;
 		padding: 10px 15px;
@@ -72,6 +129,16 @@ export const ChipContainer = styled.div`
 	}
 	> * {
 		margin: 0;
+	}
+
+	@media ${devices.mobileM} {
+		width: 100%;
+	}
+
+	@media ${devices.tablet} {
+	}
+
+	@media ${devices.laptop} {
 	}
 `;
 
@@ -97,16 +164,57 @@ export const SubDescription = styled.div`
 		height: 60px;
 		border-radius: 10px;
 	}
+
+	@media ${devices.mobileM} {
+		padding-right: 0;
+	}
+
+	@media ${devices.tablet} {
+		padding-right: 0;
+	}
+
+	@media ${devices.laptop} {
+		padding-right: 250px;
+	}
 `;
 
 export const FeaturedInformation = styled.section`
-	height: 100vh;
+	min-height: 100vh;
 	padding: 50px 235px 0 235px;
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px 0 235px;
+	}
 `;
 
 export const InfoOneContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+
+	@media ${devices.mobileM} {
+		grid-template-columns: 1fr;
+	}
+
+	@media ${devices.tablet} {
+		grid-template-columns: 1fr;
+	}
+
+	@media ${devices.laptop} {
+		grid-template-columns: 1fr 1fr;
+	}
+
 	> div {
 		padding: 50px;
 	}
@@ -137,6 +245,7 @@ export const InfoOneContainer = styled.div`
 			font-weight: lighter;
 			font-size: 20px;
 			line-height: 30px;
+			text-align: justify;
 		}
 	}
 `;
@@ -151,12 +260,44 @@ export const InformationCardContainer = styled.div`
 
 export const FeaturedFacilitiesSection = styled.section`
 	padding: 70px 235px 0 235px;
-	height: 100vh;
+	display: block;
 	img {
 		height: 800px;
 		max-height: 800px;
 		display: block;
 		margin: 0 auto;
+
+		@media ${devices.mobileM} {
+			display: none;
+		}
+
+		@media ${devices.tablet} {
+			display: none;
+		}
+
+		@media ${devices.laptop} {
+			display: block;
+			height: 800px;
+		}
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+		height: 100%;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+		height: 100%;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+		min-height: 100vh;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px 0 235px;
 	}
 `;
 
@@ -173,6 +314,22 @@ export const FeaturedFacilitiesDescription = styled.div`
 	}
 	p {
 		color: #ffffff85;
+	}
+
+	@media ${devices.mobileM} {
+		padding: 60px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 60px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 60px;
 	}
 `;
 
@@ -198,6 +355,22 @@ export const FeaturedPropertiesSection = styled.section`
 	padding: 50px 235px;
 	font-family: ${fontStyle.primary};
 	background-color: ${ColorPallets.highlights};
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px;
+	}
 `;
 
 export const FeaturedPropertiesContainer = styled.div`
@@ -242,12 +415,29 @@ export const LeadersSection = styled.section`
 	padding: 50px 235px 0 235px;
 	min-height: 100vh;
 	background-color: rgba(255, 255, 255, 0.75);
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px 0 235px;
+	}
 `;
 
 export const LeadersContainer = styled.div``;
 
 export const LeadersHeading = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 
@@ -298,6 +488,7 @@ export const LeadersCard = styled.div`
 	-webkit-box-shadow: 7px 10px 14px -5px rgba(0, 0, 0, 0.61);
 	-moz-box-shadow: 7px 10px 14px -5px rgba(0, 0, 0, 0.61);
 	position: relative;
+
 	img {
 		width: 100%;
 		max-height: 300px;
@@ -333,16 +524,48 @@ export const LeadersCard = styled.div`
 			width: 100%;
 		}
 	}
+
+	@media ${devices.mobileM} {
+		margin-bottom: 30px;
+	}
+
+	@media ${devices.tablet} {
+		margin-bottom: 20px;
+	}
+
+	@media ${devices.laptop} {
+		margin-bottom: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		margin-bottom: 0;
+	}
 `;
 
 export const AOSContainer = styled.div``;
 
 export const GoogleMapSection = styled.section`
 	/* width: 100vh; */
-	height: 100vh;
+	min-height: 100vh;
 	position: relative;
 	padding: 50px 235px 0 235px;
 	background-color: rgba(59, 52, 134, 1);
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px 0 235px;
+	}
 `;
 
 export const GoogleMapHeading = styled.div`
@@ -415,6 +638,22 @@ export const IconContainer = styled.div`
 export const CompanyPartnersSection = styled.section`
 	padding: 100px 235px;
 	background-color: rgba(255, 255, 255, 0.75);
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 100px 235px;
+	}
 `;
 
 export const CompanyPartnerContainer = styled.div`
@@ -439,16 +678,63 @@ export const CompanyPartnerIcons = styled.div`
 	gap: 30px;
 	align-items: center;
 	justify-content: space-between;
-	margin-top: 50px;
 	img {
 		height: 50px;
 		object-fit: contain;
 		filter: grayscale(100%);
+		@media ${devices.mobileM} {
+			display: block;
+			margin: 10px auto;
+		}
+
+		@media ${devices.tablet} {
+			margin: 5px;
+		}
+
+		@media ${devices.laptop} {
+			margin: 0;
+		}
+
+		@media ${devices.desktopM} {
+			margin: 0;
+		}
+	}
+
+	@media ${devices.mobileM} {
+		margin-top: 10px;
+	}
+
+	@media ${devices.tablet} {
+		margin-top: 40px;
+	}
+
+	@media ${devices.laptop} {
+		margin: 0;
+	}
+
+	@media ${devices.desktopM} {
+		margin-top: 50px;
 	}
 `;
 
 export const BookingSection = styled.section`
 	padding: 50px 235px 0 235px;
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 20px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 235px 0 235px;
+	}
 `;
 
 export const BookingContainer = styled.div`
@@ -458,8 +744,10 @@ export const BookingContainer = styled.div`
 	border-radius: 20px;
 	overflow: hidden;
 	position: relative;
-	
-	h1, h6, button {
+
+	h1,
+	h6,
+	button {
 		margin: 40px 0;
 	}
 
@@ -487,5 +775,36 @@ export const BookingContainer = styled.div`
 		object-fit: contain;
 		position: absolute;
 		top: 2%;
+
+		@media ${devices.mobileM} {
+			display: none;
+		}
+
+		@media ${devices.tablet} {
+			display: none;
+		}
+
+		@media ${devices.laptop} {
+			display: block;
+		}
+
+		@media ${devices.desktopM} {
+		}
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 40px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 80px 60px 60px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		margin-bottom: 30px;
 	}
 `;

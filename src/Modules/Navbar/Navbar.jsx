@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
 	Navbar,
 	NavbarContactContainer,
@@ -15,6 +15,19 @@ import { Button } from "@mui/material";
 import Logo from "./Components/Logo.jsx";
 
 const Navbar1 = () => {
+	const [isShowLinks, setIsShowLinks] = useState(false);
+	const nav = useRef();
+	
+	const handleCloseNavlist = () => {
+		setIsShowLinks(!isShowLinks)
+	}
+
+	const handleOpenNavlist = () => {
+		nav.current.focus();
+		setIsShowLinks(!isShowLinks)
+	}
+
+
 	return (
 		<NavbarContainer>
 			<NavbarContactContainer>
@@ -45,13 +58,14 @@ const Navbar1 = () => {
 					<Button variant="outlined">Booking</Button>
 				</div>
 			</Navbar>
-			<NavbarResponsive>
-				<MenuIcon />
-				<NavbarLinks>
+			<NavbarResponsive ref={nav} >
+				<MenuIcon onClick={handleOpenNavlist} />
+				<NavbarLinks ref={nav} isShowLinks={isShowLinks} onBlur={handleCloseNavlist} tabIndex={isShowLinks ? 0 : 1}>
 					<li>Home</li>
 					<li>Apartments</li>
 					<li>Join Our Team</li>
 					<li>About</li>
+					<li><Button variant="outlined">Booking</Button></li>
 				</NavbarLinks>
 				<Logo />
 			</NavbarResponsive>
