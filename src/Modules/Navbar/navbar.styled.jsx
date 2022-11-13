@@ -7,6 +7,15 @@ import {
 } from "../../utils/constants/css.constants";
 
 const NavbarLinksDefault = css`
+	> li {
+		> a {
+			text-decoration: none;
+			color: #fff;
+			:visited, :active {
+				color: inherit;
+			}
+		}
+	}
 	${(props) =>
 		props.isShowLinks &&
 		css`
@@ -31,6 +40,11 @@ const NavbarLinksDefault = css`
 				&:hover:not(:last-child) {
 					background-color: ${ColorPallets.highlights};
 					color: #fff;
+				}
+
+				> a {
+					color: red;
+					text-decoration: none;
 				}
 			}
 		`}

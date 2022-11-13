@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Button } from "@mui/material";
 
 import Logo from "./Components/Logo.jsx";
+import { Link } from "react-router-dom";
 
 const Navbar1 = () => {
 	const [isShowLinks, setIsShowLinks] = useState(false);
@@ -49,10 +50,10 @@ const Navbar1 = () => {
 			<Navbar>
 				<Logo />
 				<NavbarLinks>
-					<li>Home</li>
-					<li>Apartments</li>
-					<li>Join Our Team</li>
-					<li>About</li>
+					<li><Link to="/">Home</Link></li>
+					<li><Link to="/apartments">Apartments</Link></li>
+					<li><Link>Join Our Team</Link></li>
+					<li><Link>About</Link></li>
 				</NavbarLinks>
 				<div>
 					<Button variant="outlined">Booking</Button>

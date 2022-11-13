@@ -11,6 +11,9 @@ import Navbar from "./Modules/Navbar/Navbar.jsx";
 import Footer from "./Modules/Footer/Footer.jsx";
 
 import "./App.css";
+import Apartments from "./Modules/Apartments/Apartments.jsx";
+import { Outlet, Route, Routes } from "react-router-dom";
+import Apartment from "./Modules/Apartment/Apartment.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -162,11 +165,15 @@ const App = () => {
 				/>
 			</div>
 			<ThemeProvider theme={theme}>
-				{/* <ScrollerMotion> */}
-					<Navbar />
-					<Home />
-					<Footer />
-				{/* </ScrollerMotion> */}
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/apartments" element={<Outlet />} >
+						<Route exact path="/apartments" element={<Apartments />} />
+						<Route exact path="/apartments/:apartmentId" element={<Apartment />} />
+					</Route>
+				</Routes>
+				<Footer />
 			</ThemeProvider>
 		</>
 	);
