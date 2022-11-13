@@ -23,7 +23,7 @@ export const ApartmentsSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px;
+		padding: 50px 400px;
 	}
 `;
 
@@ -88,7 +88,7 @@ export const HowsItWorkSection = styled.div`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px;
+		padding: 50px 400px;
 	}
 `;
 

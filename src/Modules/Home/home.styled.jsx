@@ -35,7 +35,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const MainContainer = styled.main`
-	padding: 0 235px;
+	padding: 0 400px;
 	padding-top: 100px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -58,7 +58,7 @@ export const MainContainer = styled.main`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 0 235px;
+		padding: 0 400px;
 		grid-template-columns: 1fr 1fr;
 	}
 
@@ -180,7 +180,7 @@ export const SubDescription = styled.div`
 
 export const FeaturedInformation = styled.section`
 	min-height: 100vh;
-	padding: 50px 235px 0 235px;
+	padding: 50px 400px 0 400px;
 
 	@media ${devices.mobileM} {
 		padding: 20px;
@@ -195,7 +195,7 @@ export const FeaturedInformation = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px 0 235px;
+		padding: 50px 400px 0 400px;
 	}
 `;
 
@@ -259,7 +259,7 @@ export const InformationCardContainer = styled.div`
 `;
 
 export const FeaturedFacilitiesSection = styled.section`
-	padding: 70px 235px 0 235px;
+	padding: 70px 400px 0 400px;
 	display: block;
 	img {
 		height: 800px;
@@ -297,7 +297,7 @@ export const FeaturedFacilitiesSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px 0 235px;
+		padding: 50px 400px 0 400px;
 	}
 `;
 
@@ -352,7 +352,7 @@ export const IconWithDetailsBox = styled.div`
 
 export const FeaturedPropertiesSection = styled.section`
 	min-height: 100vh;
-	padding: 50px 235px;
+	padding: 50px 400px;
 	font-family: ${fontStyle.primary};
 	background-color: ${ColorPallets.highlights};
 
@@ -369,7 +369,7 @@ export const FeaturedPropertiesSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px;
+		padding: 50px 400px;
 	}
 `;
 
@@ -412,7 +412,7 @@ export const FeaturePropertiesHeading = styled.div`
 `;
 
 export const LeadersSection = styled.section`
-	padding: 50px 235px 0 235px;
+	padding: 50px 400px 0 400px;
 	min-height: 100vh;
 	background-color: rgba(255, 255, 255, 0.75);
 
@@ -429,7 +429,7 @@ export const LeadersSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px 0 235px;
+		padding: 50px 400px 0 400px;
 	}
 `;
 
@@ -548,7 +548,7 @@ export const GoogleMapSection = styled.section`
 	/* width: 100vh; */
 	min-height: 100vh;
 	position: relative;
-	padding: 50px 235px 0 235px;
+	padding: 50px 400px 0 400px;
 	background-color: rgba(59, 52, 134, 1);
 
 	@media ${devices.mobileM} {
@@ -564,7 +564,7 @@ export const GoogleMapSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 235px 0 235px;
+		padding: 50px 400px 0 400px;
 	}
 `;
 
@@ -636,7 +636,7 @@ export const IconContainer = styled.div`
 `;
 
 export const CompanyPartnersSection = styled.section`
-	padding: 100px 235px;
+	padding: 100px 400px;
 	background-color: rgba(255, 255, 255, 0.75);
 
 	@media ${devices.mobileM} {
@@ -652,7 +652,7 @@ export const CompanyPartnersSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 100px 235px;
+		padding: 100px 400px;
 	}
 `;
 
@@ -717,94 +717,3 @@ export const CompanyPartnerIcons = styled.div`
 	}
 `;
 
-export const BookingSection = styled.section`
-	padding: 50px 235px 0 235px;
-
-	@media ${devices.mobileM} {
-		padding: 20px;
-	}
-
-	@media ${devices.tablet} {
-		padding: 20px;
-	}
-
-	@media ${devices.laptop} {
-		padding: 20px;
-	}
-
-	@media ${devices.desktopM} {
-		padding: 50px 235px 0 235px;
-	}
-`;
-
-export const BookingContainer = styled.div`
-	background-color: ${ColorPallets.highlights};
-	padding: 80px 60px 60px 100px;
-	font-family: ${fontStyle.primary};
-	border-radius: 20px;
-	overflow: hidden;
-	position: relative;
-
-	h1,
-	h6,
-	button {
-		margin: 40px 0;
-	}
-
-	h1 {
-		font-size: 3.5rem;
-		color: #fff;
-		font-weight: bolder;
-	}
-
-	h6 {
-		font-size: 1rem;
-		font-weight: lighter;
-		color: #fff;
-	}
-
-	button {
-		${DefaultButtonStyle};
-		width: 230px;
-		height: 60px;
-		border-radius: 10px;
-	}
-
-	img {
-		height: 550px;
-		object-fit: contain;
-		position: absolute;
-		top: 2%;
-
-		@media ${devices.mobileM} {
-			display: none;
-		}
-
-		@media ${devices.tablet} {
-			display: none;
-		}
-
-		@media ${devices.laptop} {
-			display: block;
-		}
-
-		@media ${devices.desktopM} {
-		}
-	}
-
-	@media ${devices.mobileM} {
-		padding: 20px;
-	}
-
-	@media ${devices.tablet} {
-		padding: 40px;
-	}
-
-	@media ${devices.laptop} {
-		padding: 80px 60px 60px 100px;
-	}
-
-	@media ${devices.desktopM} {
-		margin-bottom: 30px;
-	}
-`;

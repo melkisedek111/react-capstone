@@ -6,7 +6,7 @@ import {
 } from "../../utils/constants/css.constants";
 
 export const FooterSection = styled.section`
-	padding: 20px 235px;
+	padding: 20px 400px;
 	padding-top: 250px;
 	background-color: rgba(255, 255, 255, 0.75);
 	@media ${devices.mobileM} {
@@ -22,7 +22,7 @@ export const FooterSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-        padding: 20px 235px;
+        padding: 20px 400px;
 	}
 `;
 

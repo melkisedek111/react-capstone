@@ -19,7 +19,6 @@ import GoogleIcon from "@mui/icons-material/Google";
 import HotelIcon from "@mui/icons-material/Hotel";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import CropRotateIcon from "@mui/icons-material/CropRotate";
-import BookIcon from "@mui/icons-material/Book";
 import {
 	BackgroundContainer,
 	ChipContainer,
@@ -61,6 +60,7 @@ import {
 } from "../../utils/constants/css.constants.js";
 
 import GoogleMap from "./Components/GoogleMap.jsx";
+import CommonBooking from "../Commons/CommonBooking.jsx";
 
 const Home1 = () => {
 	return (
@@ -760,26 +760,7 @@ const Home1 = () => {
 					</CompanyPartnersSection>
 				</Grid>
 				<Grid item xs={12}>
-					<BookingSection>
-						<BookingContainer>
-							<Grid container spacing={1}>
-								<Grid item xs={12} md={5}>
-									<h1>Ready to book the property?</h1>
-									<h6>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-										elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-										leo.
-									</h6>
-									<Button variant="contained" endIcon={<BookIcon />}>
-										Book Now
-									</Button>
-								</Grid>
-								<Grid item xs={12} md={7}>
-									<img src="https://templatekit.pinisiart.com/realestatekit2/wp-content/uploads/sites/6/2021/01/aset-04.png" />
-								</Grid>
-							</Grid>
-						</BookingContainer>
-					</BookingSection>
+					<CommonBooking />
 				</Grid>
 			</Grid>
 		</HomeContainer>

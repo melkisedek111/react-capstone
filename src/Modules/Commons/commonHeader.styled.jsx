@@ -16,6 +16,14 @@ export const CommonHeaderContainer = styled.div`
 			font-size: 1.5vw;
 		}
 	}
+	h6 {
+		font-size: 3vw;
+		color: #ffff;
+
+		@media ${devices.laptop} {
+			font-size: 1.7vw;
+		}
+	}
 	h1 {
 		font-size: 11vw;
 		color: #fff;
@@ -37,6 +45,6 @@ export const CommonHeaderContainer = styled.div`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 100px 235px;
+		padding: 100px 400px;
 	}
 `;

@@ -14,13 +14,21 @@ const DefaultButtonStyle = css`
 	}
 `;
 
+const DefaultHeadingStyle = css`
+	font-size: 9vw;
+	margin-bottom: 30px;
+	@media ${devices.laptop} {
+		font-size: 3vw;
+	}
+`;
+
 export const ApartmentContainer = styled.div`
-	-family: ${fontStyle.primary};
+	font-family: ${fontStyle.primary};
 `;
 
 export const ApartmentHeadingSection = styled.section`
 	background-color: ${ColorPallets.highlights};
-	height: 40vh;
+	min-height: 30vh;
 	@media ${devices.mobileM} {
 		padding: 20px;
 	}
@@ -34,7 +42,7 @@ export const ApartmentHeadingSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 30px 235px;
+		padding: 30px 400px;
 	}
 `;
 
@@ -133,8 +141,7 @@ export const ApartmentHeading = styled.section`
 `;
 
 export const ApartmentMediaSection = styled.section`
-	background-color: #fff;
-
+	background-color: rgba(255, 255, 255, 0.75);
 `;
 
 export const VideoContainer = styled.div`
@@ -151,7 +158,7 @@ export const VideoContainer = styled.div`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 0 235px;
+		padding: 0 400px;
 	}
 	video {
 		position: absolute;
@@ -167,7 +174,198 @@ export const VideoContainer = styled.div`
 
 export const ImageContainer = styled.div``;
 
-
 export const AboutApartmentContainer = styled.section`
+	display: grid;
+	grid-template-columns: 1fr 1.3fr;
+	font-family: ${fontStyle.primary};
+	background-color: ${ColorPallets.highlights};
 
+	> div:nth-child(1) {
+		* {
+			margin: 0;
+		}
+
+		h1 {
+			color: #fff;
+			${DefaultHeadingStyle};
+		}
+
+		p {
+			color: #ffffff85;
+		}
+	}
+
+	> div:nth-child(2) {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		padding: 0 50px;
+		gap: 10px;
+		> div {
+			background-color: #f5f8fe;
+			padding: 30px 20px;
+			margin: 0 10px;
+
+			h6:nth-child(1) {
+				font-weight: lighter;
+				margin-bottom: 30px;
+			}
+		}
+		@media ${devices.mobileM} {
+			grid-template-columns: 1fr;
+		}
+
+		@media ${devices.tablet} {
+			padding: 10px;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		@media ${devices.laptop} {
+			padding: 0 50px;
+		}
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+		grid-template-columns: 1fr;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 100px;
+		grid-template-columns: 1fr 1.3fr;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 400px;
+	}
+`;
+
+export const ApartmentAmenitiesSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.75);
+`;
+
+export const ApartmentAmenitiesContainer = styled.div`
+	font-family: ${fontStyle.primary};
+	h1 {
+		color: ${ColorPallets.highlights};
+		${DefaultHeadingStyle};
+	}
+
+	> div {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+
+		> div {
+			display: flex;
+			align-items: center;
+			color: ${ColorPallets.highlights};
+			margin: 0 20px 10px 20px;
+			padding: 20px;
+			svg {
+				font-size: 2.5vw;
+			}
+			h6 {
+				font-weight: lighter;
+				font-size: 20px;
+				margin: 0;
+				margin-left: 10px;
+			}
+
+			@media ${devices.mobileM} {
+				svg {
+					font-size: 5vw;
+				}
+			}
+
+			@media ${devices.tablet} {
+				svg {
+					font-size: 2.5vw;
+				}
+			}
+		}
+
+		@media ${devices.mobileM} {
+			grid-template-columns: 1fr;
+
+		}
+
+		@media ${devices.tablet} {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 400px;
+	}
+`;
+
+export const ApartmentLocationSection = styled.section`
+	background-color: ${ColorPallets.highlights};
+`;
+
+export const ApartmentLocationContainer = styled.div`
+	min-height: 40vh;
+	position: relative;
+
+	h1 {
+		color: #fff;
+		${DefaultHeadingStyle};
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 400px;
+	}
+`;
+
+export const SimilarApartmentSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.75);
+`;
+
+export const SimilarApartmentContainer = styled.div`
+	h1 {
+		color: ${ColorPallets.highlights};
+		${DefaultHeadingStyle};
+	}
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 400px;
+	}
 `;

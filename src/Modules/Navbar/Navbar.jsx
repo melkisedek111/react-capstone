@@ -52,8 +52,8 @@ const Navbar1 = () => {
 				<NavbarLinks>
 					<li><Link to="/">Home</Link></li>
 					<li><Link to="/apartments">Apartments</Link></li>
-					<li><Link>Join Our Team</Link></li>
-					<li><Link>About</Link></li>
+					<li><Link to="join-our-team">Join Our Team</Link></li>
+					<li><Link to="/about-us">About</Link></li>
 				</NavbarLinks>
 				<div>
 					<Button variant="outlined">Booking</Button>

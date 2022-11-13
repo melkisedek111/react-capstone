@@ -14,6 +14,8 @@ import "./App.css";
 import Apartments from "./Modules/Apartments/Apartments.jsx";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Apartment from "./Modules/Apartment/Apartment.jsx";
+import AboutUs from "./Modules/AboutUs/AboutUs.jsx";
+import JoinOurTeam from "./Modules/JoinOurTeam/JoinOurTeam.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -53,9 +55,8 @@ const App = () => {
 					loaded={particlesLoaded}
 					options={{
 						particles: {
-							fpsLimit: 120,
 							number: {
-								value: 4,
+								value: 6,
 								density: {
 									enable: true,
 									value_area: 800,
@@ -80,7 +81,7 @@ const App = () => {
 								},
 							},
 							opacity: {
-								value: 0.1,
+								value: 0.3,
 								random: true,
 								anim: {
 									enable: false,
@@ -103,12 +104,12 @@ const App = () => {
 								enable: false,
 								distance: 200,
 								color: "#ffffff",
-								opacity: 0.3,
+								opacity: 1,
 								width: 2,
 							},
 							move: {
 								enable: true,
-								speed: 5,
+								speed: 8,
 								direction: "none",
 								random: false,
 								straight: false,
@@ -138,14 +139,14 @@ const App = () => {
 								grab: {
 									distance: 400,
 									line_linked: {
-										opacity: 0.3,
+										opacity: 1,
 									},
 								},
 								bubble: {
 									distance: 400,
 									size: 40,
 									duration: 2,
-									opacity: 0.3,
+									opacity: 8,
 									speed: 3,
 								},
 								repulse: {
@@ -168,10 +169,16 @@ const App = () => {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/apartments" element={<Outlet />} >
+					<Route path="/apartments" element={<Outlet />}>
 						<Route exact path="/apartments" element={<Apartments />} />
-						<Route exact path="/apartments/:apartmentId" element={<Apartment />} />
+						<Route
+							exact
+							path="/apartments/:apartmentId"
+							element={<Apartment />}
+						/>
 					</Route>
+					<Route exact path="/about-us" element={<AboutUs />} />
+					<Route exact path="/join-our-team" element={<JoinOurTeam />} />
 				</Routes>
 				<Footer />
 			</ThemeProvider>

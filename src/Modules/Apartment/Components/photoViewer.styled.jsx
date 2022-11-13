@@ -6,7 +6,7 @@ export const PhotoViewerContainer = styled.div`
     flex-wrap: wrap;
     overflow: hidden;
     justify-content: center;
-    margin: 10px;
+    margin: 0 10px;
     > img {
         height: 100px;
         width: 200px;

@@ -53,7 +53,7 @@ const NavbarLinksDefault = css`
 export const NavbarContactContainer = styled.div`
 	border-bottom: 0.5px solid #ffffff91;
 	> div {
-		padding: 20px 235px;
+		padding: 20px 400px;
 		display: grid;
 		grid-template-columns: 1fr 1fr 2fr;
 		font-family: ${fontStyle.primary};
@@ -68,14 +68,14 @@ export const NavbarContactContainer = styled.div`
 
 		@media ${devices.tablet} {
 			grid-template-columns: 1fr 1fr 1fr;
-			padding: 20px 235px;
+			padding: 20px 400px;
 			> div {
 				justify-content: center;
 			}
 		}
 
 		@media ${devices.laptop} {
-			padding: 20px 235px;
+			padding: 20px 400px;
 		}
 
 		> div {
@@ -117,7 +117,7 @@ export const Navbar = styled.div`
 	grid-template-columns: 1fr 2fr 1fr;
 	justify-content: space-between;
 	align-items: center;
-	padding: 20px 235px;
+	padding: 20px 400px;
 	> img {
 		width: 300px;
 		height: 200px;
@@ -151,7 +151,7 @@ export const Navbar = styled.div`
 
 	@media ${devices.desktopM} {
 		display: grid;
-		padding: 20px 235px;
+		padding: 20px 400px;
 	}
 `;
 
