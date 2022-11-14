@@ -16,6 +16,8 @@ import { Outlet, Route, Routes } from "react-router-dom";
 import Apartment from "./Modules/Apartment/Apartment.jsx";
 import AboutUs from "./Modules/AboutUs/AboutUs.jsx";
 import JoinOurTeam from "./Modules/JoinOurTeam/JoinOurTeam.jsx";
+import ContactUs from "./Modules/ContactUs/ContactUs.jsx";
+import Enquire from "./Modules/Enquire/Enquire.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -179,6 +181,8 @@ const App = () => {
 					</Route>
 					<Route exact path="/about-us" element={<AboutUs />} />
 					<Route exact path="/join-our-team" element={<JoinOurTeam />} />
+					<Route exact path="/contact-us" element={<ContactUs />} />
+					<Route exact path="/enquire" element={<Enquire />} />
 				</Routes>
 				<Footer />
 			</ThemeProvider>

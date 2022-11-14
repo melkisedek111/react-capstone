@@ -9,13 +9,13 @@ const CommonBooking = () => {
 			<BookingContainer>
 				<Grid container spacing={1}>
 					<Grid item xs={12} md={5}>
-						<h1>Ready to book the property?</h1>
+						<h1>Ready to book the apartment?</h1>
 						<h6>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
 							tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
 						</h6>
 						<Button variant="contained" endIcon={<BookIcon />}>
-							Book Now
+							Enquire Now
 						</Button>
 					</Grid>
 					<Grid item xs={12} md={7}>

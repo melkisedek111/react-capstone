@@ -39,13 +39,13 @@ export const ApartmentsHeading = styled.div`
 		font-size: 3vw;
 		font-weight: lighter;
 		@media ${devices.laptop} {
-			font-size: 1.5vw;
+			font-size: 1vw;
 		}
 	}
 	h1 {
 		font-size: 9vw;
 		@media ${devices.laptop} {
-			font-size: 3vw;
+			font-size: 2vw;
 		}
 	}
 `;

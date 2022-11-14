@@ -19,9 +19,9 @@ export const CommonHeaderContainer = styled.div`
 	h6 {
 		font-size: 3vw;
 		color: #ffff;
-
+		font-weight: lighter;
 		@media ${devices.laptop} {
-			font-size: 1.7vw;
+			font-size: 1.2vw;
 		}
 	}
 	h1 {
@@ -29,7 +29,7 @@ export const CommonHeaderContainer = styled.div`
 		color: #fff;
         font-weight: bold;
 		@media ${devices.laptop} {
-			font-size: 5vw;
+			font-size: 4vw;
 		}
 	}
 	@media ${devices.mobileM} {

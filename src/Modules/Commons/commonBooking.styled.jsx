@@ -10,7 +10,7 @@ const DefaultButtonStyle = css`
 `;
 export const BookingSection = styled.section`
 	padding: 50px 400px 0 400px;
-
+    background-color: rgba(255, 255, 255, 0.75);
 	@media ${devices.mobileM} {
 		padding: 20px;
 	}
@@ -24,7 +24,7 @@ export const BookingSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 400px 0 400px;
+		padding: 50px 400px 50px 400px;
 	}
 `;
 

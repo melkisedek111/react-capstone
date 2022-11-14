@@ -50,13 +50,14 @@ const Navbar1 = () => {
 			<Navbar>
 				<Logo />
 				<NavbarLinks>
-					<li><Link to="/">Home</Link></li>
-					<li><Link to="/apartments">Apartments</Link></li>
-					<li><Link to="join-our-team">Join Our Team</Link></li>
-					<li><Link to="/about-us">About</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/">Home</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/apartments">Apartments</Link></li>
+					<li className="hvr-underline-from-center"><Link to="join-our-team">Join Our Team</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/about-us">About Us</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
 				</NavbarLinks>
 				<div>
-					<Button variant="outlined">Booking</Button>
+					<Button variant="contained"><Link to="/enquire">Enquire</Link></Button>
 				</div>
 			</Navbar>
 			<NavbarResponsive ref={nav} >
@@ -66,7 +67,7 @@ const Navbar1 = () => {
 					<li>Apartments</li>
 					<li>Join Our Team</li>
 					<li>About</li>
-					<li><Button variant="outlined">Booking</Button></li>
+					<li><Button variant="outlined">Enquire</Button></li>
 				</NavbarLinks>
 				<Logo />
 			</NavbarResponsive>

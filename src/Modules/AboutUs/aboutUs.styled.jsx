@@ -7,10 +7,10 @@ import {
 
 export const AboutUsContainer = styled.div``;
 const DefaultHeadingStyle = css`
-	font-size: 9vw;
+	font-size: 7vw;
 	margin-bottom: 30px;
 	@media ${devices.laptop} {
-		font-size: 3vw;
+		font-size: 2vw;
 	}
 `;
 
@@ -66,7 +66,7 @@ export const SolutionContainer = styled.div`
 
 	h3 {
 		margin-bottom: 30px;
-        text-align: center;
+		text-align: center;
 	}
 
 	p {
@@ -115,6 +115,7 @@ export const ProvenContainer = styled.div`
 `;
 
 export const ProvenDescription = styled.div`
+	color: ${ColorPallets.highlights};
 	h1 {
 		font-size: 7vw;
 		margin-bottom: 30px;
@@ -136,5 +137,38 @@ export const ProvenDetails = styled.div`
 		padding: 30px;
 		background-color: ${ColorPallets.highlights};
 		margin-bottom: 15px;
+	}
+`;
+
+export const FormSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.9);
+`;
+
+export const FormContainer = styled.div`
+	font-family: ${fontStyle.primary};
+
+	h1 {
+		font-size: 7vw;
+		margin-bottom: 30px;
+        color: ${ColorPallets.highlights};
+		@media ${devices.laptop} {
+			font-size: 3vw;
+		}
+	}
+
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 100px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 100px 400px;
 	}
 `;

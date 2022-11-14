@@ -6,12 +6,22 @@ import {
 	fontStyle,
 } from "../../utils/constants/css.constants";
 
+const DefaultButtonStyle = css`
+	background-color: #fff;
+	color: ${ColorPallets.highlights};
+	&:hover {
+		background-color: #7743db;
+		color: #fff;
+	}
+`;
+
 const NavbarLinksDefault = css`
 	> li {
 		> a {
 			text-decoration: none;
 			color: #fff;
-			:visited, :active {
+			:visited,
+			:active {
 				color: inherit;
 			}
 		}
@@ -30,6 +40,9 @@ const NavbarLinksDefault = css`
 			top: 100%;
 
 			> li {
+				.hvr-sweep-to-right::before {
+					background: #7743db;
+				}
 				cursor: pointer;
 				text-align: center;
 				display: block;
@@ -45,6 +58,7 @@ const NavbarLinksDefault = css`
 				> a {
 					color: red;
 					text-decoration: none;
+					padding: 0 5px;
 				}
 			}
 		`}
@@ -128,11 +142,15 @@ export const Navbar = styled.div`
 		text-align: right;
 
 		> button {
-			color: #fff;
 			height: 60px;
 			width: 150px;
-			border: 1px solid #fff;
+			border: none;
 			border-radius: 15px;
+			${DefaultButtonStyle};
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
 		}
 	}
 

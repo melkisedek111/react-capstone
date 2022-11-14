@@ -624,14 +624,14 @@ export const IconContainer = styled.div`
 		> h6,
 		svg {
 			margin-left: 10px;
-			font-size: 18px;
+			font-size: 16px;
 		}
 	}
 	> h6 {
 		font-weight: bolder;
 		text-align: right;
-		font-size: 18px;
-		margin-left: 30px;
+		font-size: 16px;
+		margin-left: 25px;
 	}
 `;
 
