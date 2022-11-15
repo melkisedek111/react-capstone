@@ -31,6 +31,7 @@ export const ContactFormContainer = styled.div`
 	h2 {
 		text-align: center;
 		margin-bottom: 30px;
+        color: ${ColorPallets.highlights};
 	}
 	@media ${devices.mobileM} {
 		padding: 20px;

@@ -52,6 +52,8 @@ import {
 	CompanyPartnerIcons,
 	BookingSection,
 	BookingContainer,
+	FeaturedFacilitiesContainer,
+	FeaturedInformationSection,
 } from "./home.styled.jsx";
 import { Grid } from "@mui/material";
 import {
@@ -100,304 +102,309 @@ const Home1 = () => {
 					</BackgroundContainer>
 				</Grid>
 				<Grid item xs={12}>
-					<FeaturedInformation>
-						<InfoOneContainer>
-							<div data-aos="fade-left">
-								<h1>
-									We provide houses, apartments, and soho with modern designs
-									and the best facilities for you.
-								</h1>
-								<Button
-									variant="contained"
-									endIcon={<DoubleArrowRoundedIcon />}
-								>
-									About Us
-								</Button>
-							</div>
-							<div data-aos="fade-right">
-								<h5>Help Finding Information Online</h5>
-								<h6>
-									Aenean tempus eget turpis euismod condimentum. Sed at lorem ut
-									lacus malesuada imperdiet id ac urna. Morbi ac libero
-									consequat ipsum consequat volutpat. Duis finibus ex quam, et
-									malesuada sem gravida ac.
-								</h6>
-								<h6>
-									Pellentesque laoreet odio a sem feugiat dignissim. Vivamus
-									elementum mi nisi, id dictum ante maximus in. Pellentesque
-									habitant morbi tristique senectus et netus et malesuada fames
-									ac turpis egestas. Integer ultrices sem non porta placerat.
-								</h6>
-							</div>
-						</InfoOneContainer>
-						<InformationCardContainer>
-							<Grid container spacing={1}>
-								<Grid
-									item
-									xs={12}
-									lg={3}
-									md={3}
-									data-aos="fade-up"
-									data-aos-duration="1000"
-								>
-									<Card sx={{ minWidth: 300 }}>
-										<CardMedia
-											component="img"
-											height="260"
-											image="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-											alt="green iguana"
-										/>
-										<CardContent>
-											<Typography
-												gutterBottom
-												variant="h5"
-												component="div"
-												style={{
-													fontFamily: fontStyle.primary,
-													fontWeight: "bold",
-												}}
-											>
-												Houses
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Button
-												size="small"
-												style={{ color: ColorPallets.highlights }}
-												endIcon={<ArrowForwardRoundedIcon />}
-											>
-												Know More
-											</Button>
-										</CardActions>
-									</Card>
+					<FeaturedInformationSection>
+						<FeaturedInformation>
+							<InfoOneContainer>
+								<div data-aos="fade-left">
+									<h1>
+										We provide houses, apartments, and soho with modern designs
+										and the best facilities for you.
+									</h1>
+									<Button
+										variant="contained"
+										endIcon={<DoubleArrowRoundedIcon />}
+									>
+										About Us
+									</Button>
+								</div>
+								<div data-aos="fade-right">
+									<h5>Help Finding Information Online</h5>
+									<h6>
+										Aenean tempus eget turpis euismod condimentum. Sed at lorem
+										ut lacus malesuada imperdiet id ac urna. Morbi ac libero
+										consequat ipsum consequat volutpat. Duis finibus ex quam, et
+										malesuada sem gravida ac.
+									</h6>
+									<h6>
+										Pellentesque laoreet odio a sem feugiat dignissim. Vivamus
+										elementum mi nisi, id dictum ante maximus in. Pellentesque
+										habitant morbi tristique senectus et netus et malesuada
+										fames ac turpis egestas. Integer ultrices sem non porta
+										placerat.
+									</h6>
+								</div>
+							</InfoOneContainer>
+							<InformationCardContainer>
+								<Grid container spacing={1}>
+									<Grid
+										item
+										xs={12}
+										lg={3}
+										md={3}
+										data-aos="fade-up"
+										data-aos-duration="1000"
+									>
+										<Card sx={{ minWidth: 300 }}>
+											<CardMedia
+												component="img"
+												height="260"
+												image="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+												alt="green iguana"
+											/>
+											<CardContent>
+												<Typography
+													gutterBottom
+													variant="h5"
+													component="div"
+													style={{
+														fontFamily: fontStyle.primary,
+														fontWeight: "bold",
+													}}
+												>
+													Houses
+												</Typography>
+												<Typography variant="body2" color="text.secondary">
+													Lizards are a widespread group of squamate reptiles,
+													with over 6,000 species, ranging across all continents
+													except Antarctica
+												</Typography>
+											</CardContent>
+											<CardActions>
+												<Button
+													size="small"
+													style={{ color: ColorPallets.highlights }}
+													endIcon={<ArrowForwardRoundedIcon />}
+												>
+													Know More
+												</Button>
+											</CardActions>
+										</Card>
+									</Grid>
+									<Grid
+										item
+										xs={12}
+										lg={3}
+										md={3}
+										data-aos="fade-up"
+										data-aos-duration="1000"
+									>
+										<Card sx={{ minWidth: 300 }}>
+											<CardMedia
+												component="img"
+												height="260"
+												image="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+												alt="green iguana"
+											/>
+											<CardContent>
+												<Typography
+													gutterBottom
+													variant="h5"
+													component="div"
+													style={{
+														fontFamily: fontStyle.primary,
+														fontWeight: "bold",
+													}}
+												>
+													Apartments
+												</Typography>
+												<Typography variant="body2" color="text.secondary">
+													Lizards are a widespread group of squamate reptiles,
+													with over 6,000 species, ranging across all continents
+													except Antarctica
+												</Typography>
+											</CardContent>
+											<CardActions>
+												<Button
+													size="small"
+													style={{ color: ColorPallets.highlights }}
+													endIcon={<ArrowForwardRoundedIcon />}
+												>
+													Know More
+												</Button>
+											</CardActions>
+										</Card>
+									</Grid>
+									<Grid
+										item
+										xs={12}
+										lg={3}
+										md={3}
+										data-aos="fade-up"
+										data-aos-duration="1000"
+									>
+										<Card sx={{ minWidth: 300 }}>
+											<CardMedia
+												component="img"
+												height="260"
+												image="https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+												alt="green iguana"
+											/>
+											<CardContent>
+												<Typography
+													gutterBottom
+													variant="h5"
+													component="div"
+													style={{
+														fontFamily: fontStyle.primary,
+														fontWeight: "bold",
+													}}
+												>
+													SOHO
+												</Typography>
+												<Typography variant="body2" color="text.secondary">
+													Lizards are a widespread group of squamate reptiles,
+													with over 6,000 species, ranging across all continents
+													except Antarctica
+												</Typography>
+											</CardContent>
+											<CardActions>
+												<Button
+													size="small"
+													style={{ color: ColorPallets.highlights }}
+													endIcon={<ArrowForwardRoundedIcon />}
+												>
+													Know More
+												</Button>
+											</CardActions>
+										</Card>
+									</Grid>
+									<Grid
+										item
+										xs={12}
+										lg={3}
+										md={3}
+										data-aos="fade-up"
+										data-aos-duration="1000"
+									>
+										<Card sx={{ minWidth: 300 }}>
+											<CardMedia
+												component="img"
+												height="260"
+												image="https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+												alt="green iguana"
+											/>
+											<CardContent>
+												<Typography
+													gutterBottom
+													variant="h5"
+													component="div"
+													style={{
+														fontFamily: fontStyle.primary,
+														fontWeight: "bold",
+													}}
+												>
+													Studio
+												</Typography>
+												<Typography variant="body2" color="text.secondary">
+													Lizards are a widespread group of squamate reptiles,
+													with over 6,000 species, ranging across all continents
+													except Antarctica
+												</Typography>
+											</CardContent>
+											<CardActions>
+												<Button
+													size="small"
+													style={{ color: ColorPallets.highlights }}
+													endIcon={<ArrowForwardRoundedIcon />}
+												>
+													Know More
+												</Button>
+											</CardActions>
+										</Card>
+									</Grid>
 								</Grid>
-								<Grid
-									item
-									xs={12}
-									lg={3}
-									md={3}
-									data-aos="fade-up"
-									data-aos-duration="1000"
-								>
-									<Card sx={{ minWidth: 300 }}>
-										<CardMedia
-											component="img"
-											height="260"
-											image="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-											alt="green iguana"
-										/>
-										<CardContent>
-											<Typography
-												gutterBottom
-												variant="h5"
-												component="div"
-												style={{
-													fontFamily: fontStyle.primary,
-													fontWeight: "bold",
-												}}
-											>
-												Apartments
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Button
-												size="small"
-												style={{ color: ColorPallets.highlights }}
-												endIcon={<ArrowForwardRoundedIcon />}
-											>
-												Know More
-											</Button>
-										</CardActions>
-									</Card>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									lg={3}
-									md={3}
-									data-aos="fade-up"
-									data-aos-duration="1000"
-								>
-									<Card sx={{ minWidth: 300 }}>
-										<CardMedia
-											component="img"
-											height="260"
-											image="https://images.pexels.com/photos/1428348/pexels-photo-1428348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-											alt="green iguana"
-										/>
-										<CardContent>
-											<Typography
-												gutterBottom
-												variant="h5"
-												component="div"
-												style={{
-													fontFamily: fontStyle.primary,
-													fontWeight: "bold",
-												}}
-											>
-												SOHO
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Button
-												size="small"
-												style={{ color: ColorPallets.highlights }}
-												endIcon={<ArrowForwardRoundedIcon />}
-											>
-												Know More
-											</Button>
-										</CardActions>
-									</Card>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									lg={3}
-									md={3}
-									data-aos="fade-up"
-									data-aos-duration="1000"
-								>
-									<Card sx={{ minWidth: 300 }}>
-										<CardMedia
-											component="img"
-											height="260"
-											image="https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-											alt="green iguana"
-										/>
-										<CardContent>
-											<Typography
-												gutterBottom
-												variant="h5"
-												component="div"
-												style={{
-													fontFamily: fontStyle.primary,
-													fontWeight: "bold",
-												}}
-											>
-												Studio
-											</Typography>
-											<Typography variant="body2" color="text.secondary">
-												Lizards are a widespread group of squamate reptiles,
-												with over 6,000 species, ranging across all continents
-												except Antarctica
-											</Typography>
-										</CardContent>
-										<CardActions>
-											<Button
-												size="small"
-												style={{ color: ColorPallets.highlights }}
-												endIcon={<ArrowForwardRoundedIcon />}
-											>
-												Know More
-											</Button>
-										</CardActions>
-									</Card>
-								</Grid>
-							</Grid>
-						</InformationCardContainer>
-					</FeaturedInformation>
+							</InformationCardContainer>
+						</FeaturedInformation>
+					</FeaturedInformationSection>
 				</Grid>
 				<Grid item xs={12}>
 					<FeaturedFacilitiesSection>
-						<Grid container>
-							<Grid item xs={12} md={6} data-aos="fade-right">
-								<img src="https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+						<FeaturedFacilitiesContainer>
+							<Grid container>
+								<Grid item xs={12} md={6} data-aos="fade-right">
+									<img src="https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+								</Grid>
+								<Grid item xs={12} md={6} data-aos="fade-left">
+									<FeaturedFacilitiesDescription>
+										<h2>Featured Facilities from Our Property</h2>
+										<p>
+											Etiam ac congue lorem. Nunc aliquam mi nec justo elementum
+											venenatis. Interdum et malesuada fames ac ante ipsum
+											primis in faucibus. Quisque velit dui, vehicula sed orci
+											ac, elementum lacinia velit.
+										</p>
+										<IconWithDetailsContainer>
+											<Grid container spacing={3}>
+												<Grid
+													item
+													xs={6}
+													md={6}
+													data-aos="fade-left"
+													data-aos-duration="1500"
+												>
+													<IconWithDetailsBox>
+														<YardRoundedIcon />
+														<h6>ECO FRIENDLY</h6>
+														<p>
+															Our product will speed up your work in creating
+															your own presentations.
+														</p>
+													</IconWithDetailsBox>
+												</Grid>
+												<Grid
+													item
+													xs={6}
+													md={6}
+													data-aos="fade-left"
+													data-aos-duration="1500"
+												>
+													<IconWithDetailsBox>
+														<SecurityRoundedIcon />
+														<h6>SECURITY</h6>
+														<p>
+															Our product will speed up your work in creating
+															your own presentations.
+														</p>
+													</IconWithDetailsBox>
+												</Grid>
+												<Grid
+													item
+													xs={6}
+													md={6}
+													data-aos="fade-left"
+													data-aos-duration="1500"
+												>
+													<IconWithDetailsBox>
+														<SupportAgentRoundedIcon />
+														<h6>SUPPORT</h6>
+														<p>
+															Use the best color solutions to create wonderful
+															presentation.
+														</p>
+													</IconWithDetailsBox>
+												</Grid>
+												<Grid
+													item
+													xs={6}
+													md={6}
+													data-aos="fade-left"
+													data-aos-duration="1500"
+												>
+													<IconWithDetailsBox>
+														<WeekendRoundedIcon />
+														<h6>LIVING</h6>
+														<p>
+															Use the best color solutions to create wonderful
+															presentation.
+														</p>
+													</IconWithDetailsBox>
+												</Grid>
+											</Grid>
+										</IconWithDetailsContainer>
+									</FeaturedFacilitiesDescription>
+								</Grid>
 							</Grid>
-							<Grid item xs={12} md={6} data-aos="fade-left">
-								<FeaturedFacilitiesDescription>
-									<h2>Featured Facilities from Our Property</h2>
-									<p>
-										Etiam ac congue lorem. Nunc aliquam mi nec justo elementum
-										venenatis. Interdum et malesuada fames ac ante ipsum primis
-										in faucibus. Quisque velit dui, vehicula sed orci ac,
-										elementum lacinia velit.
-									</p>
-									<IconWithDetailsContainer>
-										<Grid container spacing={3}>
-											<Grid
-												item
-												xs={6}
-												md={6}
-												data-aos="fade-left"
-												data-aos-duration="1500"
-											>
-												<IconWithDetailsBox>
-													<YardRoundedIcon />
-													<h6>ECO FRIENDLY</h6>
-													<p>
-														Our product will speed up your work in creating your
-														own presentations.
-													</p>
-												</IconWithDetailsBox>
-											</Grid>
-											<Grid
-												item
-												xs={6}
-												md={6}
-												data-aos="fade-left"
-												data-aos-duration="1500"
-											>
-												<IconWithDetailsBox>
-													<SecurityRoundedIcon />
-													<h6>SECURITY</h6>
-													<p>
-														Our product will speed up your work in creating your
-														own presentations.
-													</p>
-												</IconWithDetailsBox>
-											</Grid>
-											<Grid
-												item
-												xs={6}
-												md={6}
-												data-aos="fade-left"
-												data-aos-duration="1500"
-											>
-												<IconWithDetailsBox>
-													<SupportAgentRoundedIcon />
-													<h6>SUPPORT</h6>
-													<p>
-														Use the best color solutions to create wonderful
-														presentation.
-													</p>
-												</IconWithDetailsBox>
-											</Grid>
-											<Grid
-												item
-												xs={6}
-												md={6}
-												data-aos="fade-left"
-												data-aos-duration="1500"
-											>
-												<IconWithDetailsBox>
-													<WeekendRoundedIcon />
-													<h6>LIVING</h6>
-													<p>
-														Use the best color solutions to create wonderful
-														presentation.
-													</p>
-												</IconWithDetailsBox>
-											</Grid>
-										</Grid>
-									</IconWithDetailsContainer>
-								</FeaturedFacilitiesDescription>
-							</Grid>
-						</Grid>
+						</FeaturedFacilitiesContainer>
 					</FeaturedFacilitiesSection>
 				</Grid>
 				<Grid item xs={12}>

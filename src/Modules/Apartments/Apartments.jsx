@@ -1,5 +1,6 @@
 import { Apartment } from "@mui/icons-material";
 import React from "react";
+import CommonBooking from "../Commons/CommonBooking.jsx";
 import CommonHeader from "../Commons/CommonHeader.jsx";
 import {
 	ApartmentsContainer,
@@ -62,6 +63,7 @@ const Apartments = () => {
 					/>
 				</WorkCardLists>
 			</HowsItWorkSection>
+			<CommonBooking />
 		</ApartmentsContainer>
 	);
 };

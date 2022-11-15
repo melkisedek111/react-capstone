@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
-import { ColorPallets, devices, fontStyle } from "../../utils/constants/css.constants";
+import {
+	ColorPallets,
+	devices,
+	fontStyle,
+} from "../../utils/constants/css.constants";
 const DefaultButtonStyle = css`
 	background-color: #fff;
 	color: ${ColorPallets.highlights};
@@ -10,7 +14,7 @@ const DefaultButtonStyle = css`
 `;
 export const BookingSection = styled.section`
 	padding: 50px 400px 0 400px;
-    background-color: rgba(255, 255, 255, 0.75);
+	background-color: rgba(255, 255, 255, 0.75);
 	@media ${devices.mobileM} {
 		padding: 20px;
 	}
@@ -40,6 +44,15 @@ export const BookingContainer = styled.div`
 	h6,
 	button {
 		margin: 40px 0;
+
+		> a {
+			text-decoration: none;
+			color: #fff;
+			:visited,
+			:active {
+				color: inherit;
+			}
+		}
 	}
 
 	h1 {

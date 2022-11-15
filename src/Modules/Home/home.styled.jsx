@@ -32,6 +32,7 @@ const displayFlexA = css`
 export const HomeContainer = styled.div`
 	scroll-behavior: smooth;
 	will-change: transform;
+	z-index: -1;
 `;
 
 export const MainContainer = styled.main`
@@ -178,7 +179,11 @@ export const SubDescription = styled.div`
 	}
 `;
 
-export const FeaturedInformation = styled.section`
+export const FeaturedInformationSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.75);
+`;
+
+export const FeaturedInformation = styled.div`
 	min-height: 100vh;
 	padding: 50px 400px 0 400px;
 
@@ -259,6 +264,10 @@ export const InformationCardContainer = styled.div`
 `;
 
 export const FeaturedFacilitiesSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.75);
+`;
+
+export const FeaturedFacilitiesContainer = styled.div`
 	padding: 70px 400px 0 400px;
 	display: block;
 	img {
@@ -429,7 +438,7 @@ export const LeadersSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 400px 0 400px;
+		padding: 50px 400px;
 	}
 `;
 
@@ -624,13 +633,13 @@ export const IconContainer = styled.div`
 		> h6,
 		svg {
 			margin-left: 10px;
-			font-size: 16px;
+			font-size: 14px;
 		}
 	}
 	> h6 {
 		font-weight: bolder;
 		text-align: right;
-		font-size: 16px;
+		font-size: 14px;
 		margin-left: 25px;
 	}
 `;
@@ -716,4 +725,3 @@ export const CompanyPartnerIcons = styled.div`
 		margin-top: 50px;
 	}
 `;
-

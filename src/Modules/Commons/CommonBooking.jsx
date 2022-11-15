@@ -2,6 +2,7 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { BookingContainer, BookingSection } from "./commonBooking.styled.jsx";
 import BookIcon from "@mui/icons-material/Book";
+import { Link } from "react-router-dom";
 
 const CommonBooking = () => {
 	return (
@@ -15,7 +16,7 @@ const CommonBooking = () => {
 							tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
 						</h6>
 						<Button variant="contained" endIcon={<BookIcon />}>
-							Enquire Now
+							<Link to="/enquire">Enquire Now</Link>
 						</Button>
 					</Grid>
 					<Grid item xs={12} md={7}>

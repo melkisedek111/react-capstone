@@ -18,6 +18,11 @@ import AboutUs from "./Modules/AboutUs/AboutUs.jsx";
 import JoinOurTeam from "./Modules/JoinOurTeam/JoinOurTeam.jsx";
 import ContactUs from "./Modules/ContactUs/ContactUs.jsx";
 import Enquire from "./Modules/Enquire/Enquire.jsx";
+import Loading from "./Modules/Loading/Loading.jsx";
+import SnackbarAlert from "./Modules/Snackbar/SnackbarAlert.jsx";
+import AdminNavbar from "./Admin/Modules/Navbar/Navbar.jsx";
+import Dashboard from "./Admin/Modules/Dashboard/Dashboard.jsx";
+import AdminApartments from "./Admin/Modules/AdminApartments/AdminApartments.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -39,7 +44,7 @@ const App = () => {
 	}, []);
 	return (
 		<>
-			<div
+			{/* <div
 				style={{
 					position: "fixed",
 					backgroundAttachment: "fixed",
@@ -58,7 +63,7 @@ const App = () => {
 					options={{
 						particles: {
 							number: {
-								value: 6,
+								value: 4,
 								density: {
 									enable: true,
 									value_area: 800,
@@ -93,7 +98,7 @@ const App = () => {
 								},
 							},
 							size: {
-								value: 160,
+								value: 130,
 								random: false,
 								anim: {
 									enable: true,
@@ -111,7 +116,7 @@ const App = () => {
 							},
 							move: {
 								enable: true,
-								speed: 8,
+								speed: 6,
 								direction: "none",
 								random: false,
 								straight: false,
@@ -166,8 +171,9 @@ const App = () => {
 						retina_detect: true,
 					}}
 				/>
-			</div>
+			</div> */}
 			<ThemeProvider theme={theme}>
+				
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -183,8 +189,13 @@ const App = () => {
 					<Route exact path="/join-our-team" element={<JoinOurTeam />} />
 					<Route exact path="/contact-us" element={<ContactUs />} />
 					<Route exact path="/enquire" element={<Enquire />} />
+					{/* <Route exact path="/admin" element={<AdminNavbar />}>
+						<Route exact path="/admin" element={<Dashboard />} />
+						<Route exact path="/admin/apartments" element={<AdminApartments />} />
+					</Route> */}
 				</Routes>
 				<Footer />
+				
 			</ThemeProvider>
 		</>
 	);

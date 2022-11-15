@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Button,
 	Card,
@@ -18,8 +18,27 @@ import {
 	GetInTouchContainer,
 } from "./contactUs.styled.jsx";
 import CommonBooking from "../Commons/CommonBooking.jsx";
+import ContactUsForm from "./Components/ContactUsForm.jsx";
+import Loading from "../Loading/Loading.jsx";
+import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
+import { useAddNewMessageMutation } from "../../redux/contactUs/contactUs.api.js";
 
 const ContactUs = () => {
+	const [addNewMessage, addNewMessageResponse] = useAddNewMessageMutation();
+	const [isMessage, setIsMessage] = useState(false);
+	const [apiData, setApiData] = useState(undefined);
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		if (addNewMessageResponse?.isSuccess) {
+			const { data } = addNewMessageResponse;
+			setTimeout(() => {
+				setIsMessage(true);
+				setIsLoading(false);
+				setApiData(data);
+			}, 2500);
+		}
+	}, [addNewMessageResponse]);
 	return (
 		<ContactUsContainer>
 			<CommonHeader
@@ -33,55 +52,7 @@ const ContactUs = () => {
 							<Card sx={{ padding: "30px 20px", minHeight: "630px" }}>
 								<CardContent>
 									<h2>Fill-up the form.</h2>
-									<Grid container spacing={2}>
-										<Grid item xs={12} md={6}>
-											<TextField
-												id="filled-basic"
-												label="Name"
-												variant="outlined"
-												fullWidth
-											/>
-										</Grid>
-										<Grid item xs={12} md={6}>
-											<TextField
-												id="filled-basic"
-												label="Email"
-												variant="outlined"
-												fullWidth
-											/>
-										</Grid>
-										<Grid item xs={12}>
-											<TextField
-												id="filled-basic"
-												label="Contact Number"
-												variant="outlined"
-												fullWidth
-											/>
-										</Grid>
-										<Grid item xs={12}>
-											<TextField
-												id="filled-basic"
-												label="Subject"
-												variant="outlined"
-												fullWidth
-											/>
-										</Grid>
-										<Grid item xs={12}>
-											<TextField
-												id="filled-basic"
-												label="Message"
-												variant="outlined"
-												fullWidth
-												multiline
-												rows={6}
-											/>
-										</Grid>
-										<Grid item xs={12}>
-											<Button fullWidth variant="contained">
-												Submit Request
-											</Button>
-										</Grid>
-									</Grid>
+									<ContactUsForm addNewMessage={addNewMessage} addNewMessageResponse={addNewMessageResponse} setIsLoading={setIsLoading}/>
 								</CardContent>
 							</Card>
 						</Grid>
@@ -129,6 +100,13 @@ const ContactUs = () => {
 				</ContactFormContainer>
 			</ContactFormSection>
 			<CommonBooking />
+			<Loading isOpen={isLoading} />
+			<SnackbarAlert
+				isOpen={isMessage}
+				message={apiData?.message}
+				responseType={apiData?.responseType}
+				setIsMessage={setIsMessage}
+			/>
 		</ContactUsContainer>
 	);
 };
