@@ -84,9 +84,7 @@ const Home1 = () => {
 								<h1>Find the Most Comfortable Place to Live for You.</h1>
 								<SubDescription>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-										elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus
-										leo.
+										This is a government projects that provides a quality homes for every citizen.
 									</p>
 									<Button variant="contained" endIcon={<SearchRoundedIcon />}>
 										Search Property
@@ -118,19 +116,16 @@ const Home1 = () => {
 									</Button>
 								</div>
 								<div data-aos="fade-right">
-									<h5>Help Finding Information Online</h5>
+									<h5>What we provide from this project.</h5>
 									<h6>
-										Aenean tempus eget turpis euismod condimentum. Sed at lorem
-										ut lacus malesuada imperdiet id ac urna. Morbi ac libero
-										consequat ipsum consequat volutpat. Duis finibus ex quam, et
-										malesuada sem gravida ac.
+										Take a deep dive and browse homes for sale, original
+										neighborhood photos, resident reviews and local insights to
+										find what is right for you.
 									</h6>
 									<h6>
-										Pellentesque laoreet odio a sem feugiat dignissim. Vivamus
-										elementum mi nisi, id dictum ante maximus in. Pellentesque
-										habitant morbi tristique senectus et netus et malesuada
-										fames ac turpis egestas. Integer ultrices sem non porta
-										placerat.
+										Find your place with an immersive photo experience and the
+										most listings, including things you won’t find anywhere
+										else.
 									</h6>
 								</div>
 							</InfoOneContainer>
@@ -328,10 +323,7 @@ const Home1 = () => {
 									<FeaturedFacilitiesDescription>
 										<h2>Featured Facilities from Our Property</h2>
 										<p>
-											Etiam ac congue lorem. Nunc aliquam mi nec justo elementum
-											venenatis. Interdum et malesuada fames ac ante ipsum
-											primis in faucibus. Quisque velit dui, vehicula sed orci
-											ac, elementum lacinia velit.
+											As we immersed ourselves to the new technologies everyday, integrating the innovative technologies to the home that provides safe and friendly homes for everyone.
 										</p>
 										<IconWithDetailsContainer>
 											<Grid container spacing={3}>
@@ -346,8 +338,7 @@ const Home1 = () => {
 														<YardRoundedIcon />
 														<h6>ECO FRIENDLY</h6>
 														<p>
-															Our product will speed up your work in creating
-															your own presentations.
+															As we support the green projects that helps the eco system, we also provide more eco friendly homes for every residence.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -362,8 +353,7 @@ const Home1 = () => {
 														<SecurityRoundedIcon />
 														<h6>SECURITY</h6>
 														<p>
-															Our product will speed up your work in creating
-															your own presentations.
+															We provide a 24/7 security cameras for every homes and on standby authorities to give maximum protections to the residence.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -378,8 +368,7 @@ const Home1 = () => {
 														<SupportAgentRoundedIcon />
 														<h6>SUPPORT</h6>
 														<p>
-															Use the best color solutions to create wonderful
-															presentation.
+															We give 24/7 support and quick response for every questions and concerns about your apartment.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -394,8 +383,7 @@ const Home1 = () => {
 														<WeekendRoundedIcon />
 														<h6>LIVING</h6>
 														<p>
-															Use the best color solutions to create wonderful
-															presentation.
+															We guarantee the high quality of living for every residence, providing the home that meets the customer's requirements and expectations.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -747,9 +735,7 @@ const Home1 = () => {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<h5>
-										Vestibulum ultricies semper nibh nec scelerisque. Quisque
-										scele condimentum lacus non blandit. Praesent euismod lorem
-										eternal tempor. Mauris sem ante, elementum.
+										Meet the company partners that support this government home projects. This renowned companies has already achieve their great fits on building great and comfortable homes for everyone. 
 									</h5>
 								</Grid>
 								<Grid item xs={12} md={12}>

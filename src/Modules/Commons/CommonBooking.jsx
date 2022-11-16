@@ -12,8 +12,7 @@ const CommonBooking = () => {
 					<Grid item xs={12} md={5}>
 						<h1>Ready to book the apartment?</h1>
 						<h6>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-							tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+							Do you have the type of apartment on your mind? Let us know.
 						</h6>
 						<Button variant="contained" endIcon={<BookIcon />}>
 							<Link to="/enquire">Enquire Now</Link>

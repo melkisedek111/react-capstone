@@ -35,7 +35,7 @@ const Navbar1 = () => {
 				<div>
 					<div>
 						<EmailRoundedIcon />
-						<p>help.center@shino.com</p>
+						<p>help.center@us@utopia.gov.com</p>
 					</div>
 					<div>
 						<LocalPhoneRoundedIcon />

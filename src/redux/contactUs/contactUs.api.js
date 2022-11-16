@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import APP_CONSTANTS from "../../utils/constants/App.constants.js";
 
 export const messageApi = createApi({
 	reducerPath: "messageApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://localhost:7131/api/",
+		baseUrl: APP_CONSTANTS.URL,
 	}),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
@@ -17,6 +18,12 @@ export const messageApi = createApi({
 				},
 			}),
 			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
 		}),
 	}),
 });

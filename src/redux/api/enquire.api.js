@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
 
-export const joinerApi = createApi({
-	reducerPath: "joinerApi",
+export const enquireApi = createApi({
+	reducerPath: "enquireApi",
 	baseQuery: fetchBaseQuery({
 		baseUrl: APP_CONSTANTS.URL,
 	}),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
-		addNewJoiner: builder.mutation({
+		addNewEnquiry: builder.mutation({
 			query: (payload) => ({
-				url: "Joiner/AddNewJoiner",
+				url: "Enquiry/AddNewEnquiry",
 				method: "POST",
 				body: payload,
 				headers: {
@@ -22,4 +22,4 @@ export const joinerApi = createApi({
 	}),
 });
 
-export const { useAddNewJoinerMutation } = joinerApi;
+export const { useAddNewEnquiryMutation } = enquireApi;

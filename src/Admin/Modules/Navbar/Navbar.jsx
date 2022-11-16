@@ -24,30 +24,30 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Outlet } from "react-router-dom";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import { Link, Outlet } from "react-router-dom";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
+import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
 const drawerWidth = 240;
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const navlink = [
-    {
-        label: "Dashboard",
-        icon: <DashboardIcon />,
-        link: ""
-    },
-    {
-        label: "Apartments",
-        icon: <MapsHomeWorkIcon />,
-        link: ""
-    },
-    {
-        label: "Users",
-        icon: <PeopleAltIcon />,
-        link: ""
-    },
-]
+	{
+		label: "Dashboard",
+		icon: <DashboardIcon />,
+		link: "/admin",
+	},
+	{
+		label: "Apartments",
+		icon: <MapsHomeWorkIcon />,
+		link: "/admin/apartments",
+	},
+	{
+		label: "Users",
+		icon: <PeopleAltIcon />,
+		link: "",
+	},
+];
 
 const openedMixin = (theme) => ({
 	width: drawerWidth,
@@ -139,7 +139,7 @@ export default function MiniDrawer() {
 			<CssBaseline />
 			<AppBar position="fixed" open={open}>
 				<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-					<Box sx={{ display: "flex"}}>
+					<Box sx={{ display: "flex" }}>
 						<IconButton
 							color="inherit"
 							aria-label="open drawer"
@@ -153,7 +153,7 @@ export default function MiniDrawer() {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant="h6" noWrap component="div">
-							Mini variant drawer
+							Utopia.gov
 						</Typography>
 					</Box>
 					<Box sx={{ flexGrow: 0 }}>
@@ -200,26 +200,35 @@ export default function MiniDrawer() {
 				<Divider />
 				<List>
 					{navlink.map((data, index) => (
-						<ListItem key={data.label} disablePadding sx={{ display: "block" }}>
-							<ListItemButton
-								sx={{
-									minHeight: 48,
-									justifyContent: open ? "initial" : "center",
-									px: 2.5,
-								}}
+						<Link to={data.link} style={{textDecoration: "none"}}>
+							<ListItem
+								key={data.label}
+								disablePadding
+								sx={{ display: "block" }}
 							>
-								<ListItemIcon
+								<ListItemButton
 									sx={{
-										minWidth: 0,
-										mr: open ? 3 : "auto",
-										justifyContent: "center",
+										minHeight: 48,
+										justifyContent: open ? "initial" : "center",
+										px: 2.5,
 									}}
 								>
-									{data.icon}
-								</ListItemIcon>
-								<ListItemText primary={data.label} sx={{ opacity: open ? 1 : 0 }} />
-							</ListItemButton>
-						</ListItem>
+									<ListItemIcon
+										sx={{
+											minWidth: 0,
+											mr: open ? 3 : "auto",
+											justifyContent: "center",
+										}}
+									>
+										{data.icon}
+									</ListItemIcon>
+									<ListItemText
+										primary={data.label}
+										sx={{ opacity: open ? 1 : 0 }}
+									/>
+								</ListItemButton>
+							</ListItem>
+						</Link>
 					))}
 				</List>
 				<Divider />
