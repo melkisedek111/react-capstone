@@ -45,7 +45,7 @@ const navlink = [
 	{
 		label: "Users",
 		icon: <PeopleAltIcon />,
-		link: "",
+		link: "/admin/user",
 	},
 ];
 

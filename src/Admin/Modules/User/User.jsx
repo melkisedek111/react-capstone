@@ -1,46 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Divider, Grid, Typography, Button, Paper,Table,TableHead, TableRow, TableCell, TableBody, TablePagination, TableContainer} from "@mui/material";
-import { Box } from "@mui/system";
-import ApartmentFormModal from "./components/ApartmentFormModal.jsx";
-import { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation } from "../../../redux/apartment/apartment.api.js";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Divider, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from "@mui/material";
+import UserFormModal from "./components/UserFormModal.jsx";
+import { useRegisterNewUserMutation, useGetUsersQuery, useGetPostUsersMutation } from "../../../redux/api/user.api.js";
 import Loading from "../../../Modules/Loading/Loading.jsx";
 import SnackbarAlert from "../../../Modules/Snackbar/SnackbarAlert.jsx";
-const rows = [
 
-];
 const columns = [
-	{ id: "name", label: "Name", minWidth: 170 },
-	{ id: "type", label: "Type", minWidth: 100 },
-	{ id: "location", label: "Location", minWidth: 170 },
-	{ id: "bedroom", label: "Bedroom", minWidth: 50 },
-	{ id: "bathroom", label: "Bathroom", minWidth: 50 },
-	{ id: "balcony", label: "Balcony", minWidth: 50 },
-	{ id: "servantRoom", label: "Servant Room", minWidth: 50 },
-	{ id: "superArea", label: "Super Area", minWidth: 50 },
-	{ id: "carpetArea", label: "Carpet Area", minWidth: 50 },
-	{ id: "unitFloor", label: "Unit Floor", minWidth: 50 },
-	{ id: "price", label: "Price", minWidth: 80 },
+	{ id: "firstName", label: "First Name", minWidth: 170 },
+	{ id: "lastName", label: "Last Name", minWidth: 100 },
+	{ id: "username", label: "Username", minWidth: 170 },
+	{ id: "role", label: "Role", minWidth: 50 },
+	{ id: "isActive", label: "Active", minWidth: 50 },
 ];
 
-function createData(name, code, population, size) {
-	const density = population / size;
-	return { name, code, population, size, density };
-}
+const User = () => {
+    const [registerNewUser, registerNewUserResponse] = useRegisterNewUserMutation();
+    const getUsers = useGetUsersQuery();
+    const [getPostUsers, getPostUsersResponse] = useGetPostUsersMutation();
 
-const AdminApartments = () => {
-	const [page, setPage] = React.useState(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
-	const [openModal, setOpenModal] = React.useState(false);
+    const [page, setPage] = useState(0);
+	const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [openModal, setOpenModal] = useState(false);
+    const [users, setUsers] = useState([]);
+    const handleOpen = () => setOpenModal(true);
+	const handleCloseModal = () => setOpenModal(false);
 	const [isMessage, setIsMessage] = useState(false);
 	const [apiData, setApiData] = useState(undefined);
 	const [isLoading, setIsLoading] = useState(false);
-	const [addNewApartment, addNewApartmentResponse] = useAddNewApartmentMutation();
-	const [apartments, setApartments] = useState([]);
-	const [getPostApartments, getPostApartmentsResponse] = useGetPostApartmentsMutation();
 
-	const getApartments = useGetApartmentsQuery();
-	const handleOpen = () => setOpenModal(true);
-	const handleCloseModal = () => setOpenModal(false);
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
 	};
@@ -50,47 +37,45 @@ const AdminApartments = () => {
 		setPage(0);
 	};
 
-	useEffect(() => {
-		if (addNewApartmentResponse?.isSuccess) {
-			const { data } = addNewApartmentResponse;
-			getPostApartments();
+    useEffect(() => {
+		if (registerNewUserResponse?.isSuccess) {
+			const { data } = registerNewUserResponse;
+			getPostUsers();
 			setTimeout(() => {
 				setIsMessage(true);
 				setIsLoading(false);
 				setApiData(data);
 				handleCloseModal();
-
 			}, 2500);
 		}
-	}, [addNewApartmentResponse]);
+	}, [registerNewUserResponse]);
 
 	useEffect(() => {
-		
-		if(getApartments?.data !== undefined){
-			const { result } = getApartments.data;
-			setApartments(result);
+		if(getUsers?.data !== undefined){
+			const { result } = getUsers.data;
+			setUsers(result);
+            console.log(333333)
 		}
 		
-		if(getPostApartmentsResponse?.isSuccess){
-			const { result } = getPostApartmentsResponse.data;
-			if(JSON.stringify(apartments) !== JSON.stringify(result)){
-				setApartments(result);
+		if(getPostUsersResponse?.isSuccess){
+			const { result } = getPostUsersResponse.data;
+			if(JSON.stringify(users) !== JSON.stringify(result)){
+                console.log(555555)
+				setUsers(result);
 			}
 		}
-	}, [getApartments, getPostApartmentsResponse]);
-
-
-	
+	}, [getUsers, getPostUsersResponse]);
+    
 	return (
 		<Grid container spacing={3}>
 			<Grid item xs={12} sx={{ marginBottom: "20px" }}>
 				<Box style={{ display: "flex", justifyContent: "space-between" }}>
 					<Typography variant="h3" marginBottom={"20px"}>
-						Apartments
+						Users
 					</Typography>
 					<Box>
 						<Button variant="contained" onClick={handleOpen}>
-							Create new Apartment
+							Create new User
 						</Button>
 					</Box>
 				</Box>
@@ -114,7 +99,7 @@ const AdminApartments = () => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{apartments
+								{users
 									.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 									.map((row) => {
 										return (
@@ -143,7 +128,7 @@ const AdminApartments = () => {
 					<TablePagination
 						rowsPerPageOptions={[10, 25, 100]}
 						component="div"
-						count={apartments.length}
+						count={users.length}
 						rowsPerPage={rowsPerPage}
 						page={page}
 						onPageChange={handleChangePage}
@@ -152,12 +137,12 @@ const AdminApartments = () => {
 				</Paper>
 			</Grid>
 			<Grid item sx={12}>
-				<ApartmentFormModal
-					addNewApartment={addNewApartment}
-					addNewApartmentResponse={addNewApartmentResponse}
+				<UserFormModal
+                    registerNewUser={registerNewUser}
+                    registerNewUserResponse={registerNewUserResponse}
 					handleCloseModal={handleCloseModal}
 					openModal={openModal}
-					headerName="New Apartment"
+					headerName="New Users"
 					setIsLoading={setIsLoading}
 				/>
 				<Loading isOpen={isLoading} />
@@ -172,4 +157,4 @@ const AdminApartments = () => {
 	);
 };
 
-export default AdminApartments;
+export default User;

@@ -31,12 +31,13 @@ export const FooterContainer = styled.div`
 	color: ${ColorPallets.highlights};
 	h6 {
 		font-weight: bolder;
-		font-size: 22px;
+		font-size: 15px;
 	}
 
 	p {
 		/* font-weight: lighter; */
 		margin: 30px 0px;
+		font-size: 12px;
 	}
 `;
 

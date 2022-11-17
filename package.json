@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@azure/msal-browser": "^2.31.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fullpage/react-fullpage": "^0.1.29",
@@ -32,6 +33,7 @@
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-google-places-autocomplete": "^3.4.0",
+    "react-password-checklist": "^1.4.2",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "react-simple-image-viewer": "^1.2.2",

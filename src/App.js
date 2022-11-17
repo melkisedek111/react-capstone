@@ -23,6 +23,10 @@ import SnackbarAlert from "./Modules/Snackbar/SnackbarAlert.jsx";
 import AdminNavbar from "./Admin/Modules/Navbar/Navbar.jsx";
 import Dashboard from "./Admin/Modules/Dashboard/Dashboard.jsx";
 import AdminApartments from "./Admin/Modules/AdminApartments/AdminApartments.jsx";
+import NavbarAndFooter from "./Modules/NavbarAndFooter/NavbarAndFooter.jsx";
+import SignIn from "./Modules/Signin/Signin.jsx";
+import RequireAuth from "./Modules/RequireAuth/RequireAuth.jsx";
+import User from "./Admin/Modules/User/User.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -173,29 +177,40 @@ const App = () => {
 				/>
 			</div> */}
 			<ThemeProvider theme={theme}>
-				
-				<Navbar />
 				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/apartments" element={<Outlet />}>
-						<Route exact path="/apartments" element={<Apartments />} />
-						<Route
-							exact
-							path="/apartments/:apartmentId"
-							element={<Apartment />}
-						/>
+					<Route path="/" element={<NavbarAndFooter />}>
+						<Route exact path="/" element={<Home />} />
+						<Route path="/apartments" element={<Outlet />}>
+							<Route exact path="/apartments" element={<Apartments />} />
+							<Route
+								exact
+								path="/apartments/:apartmentId"
+								element={<Apartment />}
+							/>
+						</Route>
+						<Route exact path="/about-us" element={<AboutUs />} />
+						<Route exact path="/join-our-team" element={<JoinOurTeam />} />
+						<Route exact path="/contact-us" element={<ContactUs />} />
+						<Route exact path="/enquire" element={<Enquire />} />
 					</Route>
-					<Route exact path="/about-us" element={<AboutUs />} />
-					<Route exact path="/join-our-team" element={<JoinOurTeam />} />
-					<Route exact path="/contact-us" element={<ContactUs />} />
-					<Route exact path="/enquire" element={<Enquire />} />
-					{/* <Route exact path="/admin" element={<AdminNavbar />}>
-						<Route exact path="/admin" element={<Dashboard />} />
-						<Route exact path="/admin/apartments" element={<AdminApartments />} />
-					</Route> */}
+					<Route element={<RequireAuth  allowedRoles={[10]}/>}>
+						<Route exact path="/admin" element={<AdminNavbar />}>
+							<Route exact path="/admin" element={<Dashboard />} />
+							<Route
+								exact
+								path="/admin/apartments"
+								element={<AdminApartments />}
+							/>
+							<Route
+								exact
+								path="/admin/user"
+								element={<User />}
+							/>
+						</Route>
+					</Route>
+
+					<Route exact path="/admin/signin" element={<SignIn />} />
 				</Routes>
-				<Footer />
-				
 			</ThemeProvider>
 		</>
 	);

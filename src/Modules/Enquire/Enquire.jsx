@@ -19,9 +19,17 @@ import {
 } from "./enquire.styled.jsx";
 import CommonHeader from "../Commons/CommonHeader.jsx";
 import { useGetApartmentsByFieldsMutation } from "../../redux/apartment/apartment.api.js";
+import { useAddNewEnquiryMutation } from "../../redux/api/enquire.api.js";
+import Loading from "../Loading/Loading.jsx";
+import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
 
 const Enquire = () => {
-	const [getApartmentsByField, getApartmentsByFieldResponse] = useGetApartmentsByFieldsMutation();
+	const [getApartmentsByField, getApartmentsByFieldResponse] =
+		useGetApartmentsByFieldsMutation();
+	const [addNewEnquiry, addNewEnquiryResponse] = useAddNewEnquiryMutation();
+	const [isMessage, setIsMessage] = useState(false);
+	const [apiData, setApiData] = useState(undefined);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const [errors, setErrors] = useState({});
 	const [formFields, setFormFields] = useState({
@@ -30,10 +38,11 @@ const Enquire = () => {
 		contactNumber: "",
 		emailAddress: "",
 		homeAddress: "",
-		apartmentId: "",
+		apartmentId: 0,
 		message: "",
 		apartmentType: "",
 	});
+	const [apartmentNames, setApartmentNames] = useState([]);
 	/**
 	 * DOCUMENT: This function is used to handle value of each fields. <br>
 	 * Triggered: when insert value on the fields <br>
@@ -50,9 +59,8 @@ const Enquire = () => {
 
 		setFormFields({ ...formFields, [id || name]: value });
 
-		console.log({id, name, value})
-		if(name === "apartmentType"){
-			getApartmentsByField({type: value});
+		if (name === "apartmentType") {
+			getApartmentsByField({ type: value });
 		}
 	};
 
@@ -101,7 +109,7 @@ const Enquire = () => {
 				label: "Message",
 			},
 		};
-
+		console.log({ fields, formFields });
 		/* validation for only letter and spaces */
 		const alphabetValidation = /^[a-zA-Z\s]*$/;
 
@@ -115,7 +123,7 @@ const Enquire = () => {
 		/* this loop is used to iterate each of the default fields to check for errors and validations */
 		for (const field in fields) {
 			const { type, label } = fields[field];
-			const value = formFields[field].trim();
+			const value = typeof formFields[field] === 'string' ? formFields[field]?.trim() : formFields[field];
 
 			/* check for empty value */
 			if (!value) {
@@ -163,33 +171,40 @@ const Enquire = () => {
 		/* checking for error if no, then submit */
 		if (!Object.keys(errors).length) {
 			/* this will reset all the fields */
-			// setIsLoading(true);
+			addNewEnquiry(formFields);
+			setIsLoading(true);
 		}
 	};
 
-	// useEffect(() => {
-	// 	if (addNewMessageResponse?.isSuccess) {
-	// 		const { data } = addNewMessageResponse;
-
-	// 		setTimeout(() => {
-	// 			if (data?.responseType === "success") {
-	// 				setFormFields({
-	// 					name: "",
-	// 					emailAddress: "",
-	// 					contactNumber: "",
-	// 					subject: "",
-	// 					messageBody: "",
-	// 				});
-	// 				setErrors({});
-	// 			}
-	// 		}, 2500);
-	// 	}
-	// }, [addNewMessageResponse]);
 	useEffect(() => {
-			
-		if(getApartmentsByFieldResponse?.isSuccess){
+		if (addNewEnquiryResponse?.isSuccess) {
+			const { data } = addNewEnquiryResponse;
+
+			setTimeout(() => {
+				if (data?.responseType === "success") {
+					setFormFields({
+						firstName: "",
+						lastName: "",
+						contactNumber: "",
+						emailAddress: "",
+						homeAddress: "",
+						apartmentId: "",
+						message: "",
+						apartmentType: "",
+					});
+					setErrors({});
+					setIsMessage(true);
+					setIsLoading(false);
+					setApiData(data);
+				}
+			}, 2500);
+		}
+	}, [addNewEnquiryResponse]);
+
+	useEffect(() => {
+		if (getApartmentsByFieldResponse?.isSuccess) {
 			const { result } = getApartmentsByFieldResponse.data;
-			console.log(result)
+			setApartmentNames(result);
 		}
 	}, [getApartmentsByFieldResponse]);
 	return (
@@ -226,7 +241,7 @@ const Enquire = () => {
 												variant="outlined"
 												fullWidth
 												error={errors?.firstName ? true : false}
-												helpertext={errors?.firstName || ""}
+												helperText={errors?.firstName || ""}
 												value={formFields.firstName}
 												onChange={handleFieldChange}
 											/>
@@ -239,7 +254,7 @@ const Enquire = () => {
 												variant="outlined"
 												fullWidth
 												error={errors?.lastName ? true : false}
-												helpertext={errors?.lastName || ""}
+												helperText={errors?.lastName || ""}
 												value={formFields.lastName}
 												onChange={handleFieldChange}
 											/>
@@ -252,7 +267,7 @@ const Enquire = () => {
 												variant="outlined"
 												fullWidth
 												error={errors?.contactNumber ? true : false}
-												helpertext={errors?.contactNumber || ""}
+												helperText={errors?.contactNumber || ""}
 												value={formFields.contactNumber}
 												onChange={handleFieldChange}
 											/>
@@ -265,7 +280,7 @@ const Enquire = () => {
 												variant="outlined"
 												fullWidth
 												error={errors?.emailAddress ? true : false}
-												helpertext={errors?.emailAddress || ""}
+												helperText={errors?.emailAddress || ""}
 												value={formFields.emailAddress}
 												onChange={handleFieldChange}
 											/>
@@ -278,13 +293,16 @@ const Enquire = () => {
 												variant="outlined"
 												fullWidth
 												error={errors?.homeAddress ? true : false}
-												helpertext={errors?.homeAddress || ""}
+												helperText={errors?.homeAddress || ""}
 												value={formFields.homeAddress}
 												onChange={handleFieldChange}
 											/>
 										</Grid>
 										<Grid item xs={12} md={6}>
-											<FormControl fullWidth error={errors?.apartmentType ? true : false}>
+											<FormControl
+												fullWidth
+												error={errors?.apartmentType ? true : false}
+											>
 												<InputLabel id="apartmentType">
 													Apartment Type
 												</InputLabel>
@@ -295,7 +313,7 @@ const Enquire = () => {
 													label="Apartment Type"
 													fullWidth
 													error={errors?.apartmentType ? true : false}
-													helpertext={errors?.apartmentType || ""}
+													helperText={errors?.apartmentType || ""}
 													value={formFields.apartmentType}
 													onChange={handleFieldChange}
 												>
@@ -315,12 +333,17 @@ const Enquire = () => {
 													<MenuItem value="Railroad">Railroad</MenuItem>
 												</Select>
 												{errors?.apartmentType ? (
-													<FormHelperText>{errors?.apartmentType}</FormHelperText>
+													<FormHelperText>
+														{errors?.apartmentType}
+													</FormHelperText>
 												) : null}
 											</FormControl>
 										</Grid>
 										<Grid item xs={12} md={6}>
-											<FormControl fullWidth error={errors?.apartmentId ? true : false}>
+											<FormControl
+												fullWidth
+												error={errors?.apartmentId ? true : false}
+											>
 												<InputLabel id="apartmentName">
 													Apartment Name
 												</InputLabel>
@@ -331,13 +354,19 @@ const Enquire = () => {
 													label="Apartment Name"
 													fullWidth
 													error={errors?.apartmentId ? true : false}
-													helpertext={errors?.apartmentId || ""}
+													helperText={errors?.apartmentId || ""}
 													value={formFields.apartmentId}
 													onChange={handleFieldChange}
 												>
-													<MenuItem value={10}>Ten</MenuItem>
-													<MenuItem value={20}>Twenty</MenuItem>
-													<MenuItem value={30}>Thirty</MenuItem>
+													{apartmentNames.length ? (
+														apartmentNames.map((data) => (
+															<MenuItem value={data.value}>
+																{data.label}
+															</MenuItem>
+														))
+													) : (
+														<MenuItem value="">No Apartment Available</MenuItem>
+													)}
 												</Select>
 												{errors?.apartmentId ? (
 													<FormHelperText>{errors?.apartmentId}</FormHelperText>
@@ -354,7 +383,7 @@ const Enquire = () => {
 												multiline
 												name="message"
 												error={errors?.message ? true : false}
-												helpertext={errors?.message || ""}
+												helperText={errors?.message || ""}
 												value={formFields.message}
 												onChange={handleFieldChange}
 											/>
@@ -375,6 +404,13 @@ const Enquire = () => {
 					</Grid>
 				</EnquireDetailsAndFormContainer>
 			</EnquireDetailsAndFormSection>
+			<Loading isOpen={isLoading} />
+			<SnackbarAlert
+				isOpen={isMessage}
+				message={apiData?.message}
+				responseType={apiData?.responseType}
+				setIsMessage={setIsMessage}
+			/>
 		</EnquireContainer>
 	);
 };

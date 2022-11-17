@@ -56,6 +56,7 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 		price: "",
 		images: "",
 		video: "",
+		description: "Null"
 	});
 	const [amenities, setAmenities] = useState([
 		{
