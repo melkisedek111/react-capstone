@@ -62,7 +62,58 @@ export const apartmentApi = createApi({
 				}
 			},
 		}),
+		getApartment: builder.mutation({
+			query: (payload) => ({
+				url: "Apartment/GetApartment",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
+		getApartmentByType: builder.mutation({
+			query: () => ({
+				url: "Apartment/GetApartmentsGroupByType",
+				method: "POST",
+				body: {},
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
+		getApartmentById: builder.mutation({
+			query: (payload) => ({
+				url: "Apartment/GetApartmentById",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
 	}),
 });
 
-export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation } = apartmentApi;
+export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation } = apartmentApi;

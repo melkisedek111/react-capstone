@@ -18,15 +18,15 @@ import {
 	EnquireDetailsAndFormSection,
 } from "./enquire.styled.jsx";
 import CommonHeader from "../Commons/CommonHeader.jsx";
-import { useGetApartmentsByFieldsMutation } from "../../redux/apartment/apartment.api.js";
-import { useAddNewEnquiryMutation } from "../../redux/api/enquire.api.js";
+import { useGetApartmentsByFieldsMutation } from "../../redux/api/apartment.api.js";
+import { useAddNewInquiryMutation } from "../../redux/api/inquire.api.js";
 import Loading from "../Loading/Loading.jsx";
 import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
 
 const Enquire = () => {
 	const [getApartmentsByField, getApartmentsByFieldResponse] =
 		useGetApartmentsByFieldsMutation();
-	const [addNewEnquiry, addNewEnquiryResponse] = useAddNewEnquiryMutation();
+	const [addNewInquiry, addNewInquiryResponse] = useAddNewInquiryMutation();
 	const [isMessage, setIsMessage] = useState(false);
 	const [apiData, setApiData] = useState(undefined);
 	const [isLoading, setIsLoading] = useState(false);
@@ -171,14 +171,14 @@ const Enquire = () => {
 		/* checking for error if no, then submit */
 		if (!Object.keys(errors).length) {
 			/* this will reset all the fields */
-			addNewEnquiry(formFields);
+			addNewInquiry(formFields);
 			setIsLoading(true);
 		}
 	};
 
 	useEffect(() => {
-		if (addNewEnquiryResponse?.isSuccess) {
-			const { data } = addNewEnquiryResponse;
+		if (addNewInquiryResponse?.isSuccess) {
+			const { data } = addNewInquiryResponse;
 
 			setTimeout(() => {
 				if (data?.responseType === "success") {
@@ -199,7 +199,7 @@ const Enquire = () => {
 				}
 			}, 2500);
 		}
-	}, [addNewEnquiryResponse]);
+	}, [addNewInquiryResponse]);
 
 	useEffect(() => {
 		if (getApartmentsByFieldResponse?.isSuccess) {
@@ -210,7 +210,7 @@ const Enquire = () => {
 	return (
 		<EnquireContainer>
 			<CommonHeader
-				text="Enquire to us."
+				text="Inquire to us."
 				subtext="Give us your enquiry and booking of your future place to be."
 			/>
 			<EnquireDetailsAndFormSection>

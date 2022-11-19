@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Divider, Grid, Typography, Button, Paper,Table,TableHead, TableRow, TableCell, TableBody, TablePagination, TableContainer} from "@mui/material";
 import { Box } from "@mui/system";
 import ApartmentFormModal from "./components/ApartmentFormModal.jsx";
-import { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation } from "../../../redux/apartment/apartment.api.js";
+import { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation } from "../../../redux/api/apartment.api.js";
 import Loading from "../../../Modules/Loading/Loading.jsx";
 import SnackbarAlert from "../../../Modules/Snackbar/SnackbarAlert.jsx";
 const rows = [

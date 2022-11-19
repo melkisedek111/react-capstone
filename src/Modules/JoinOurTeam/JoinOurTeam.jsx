@@ -14,7 +14,7 @@ import {
 	TeamContainer,
 } from "./joinOurTeam.styled.jsx";
 
-import { useAddNewJoinerMutation } from "../../redux/joiner/joiner.api.js";
+import { useAddNewJoinerMutation } from "../../redux/api/joiner.api.js";
 import Loading from "../Loading/Loading.jsx";
 import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
 import FormStepper from "./Components/FormStepper.jsx";

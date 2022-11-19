@@ -15,7 +15,7 @@ const CommonBooking = () => {
 							Do you have the type of apartment on your mind? Let us know.
 						</h6>
 						<Button variant="contained" endIcon={<BookIcon />}>
-							<Link to="/enquire">Enquire Now</Link>
+							<Link to="/enquire">Inquire Now</Link>
 						</Button>
 					</Grid>
 					<Grid item xs={12} md={7}>

@@ -44,8 +44,10 @@ export const FooterContainer = styled.div`
 export const SubscriberFormContainer = styled.div`
 	height: 65px;
 	margin-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
 	input {
-		width: 260px;
+		/* width: 260px; */
 		height: inherit;
 		border-radius: 10px;
 		font-family: ${fontStyle.primary};
@@ -61,7 +63,7 @@ export const SubscriberFormContainer = styled.div`
 
 	button {
 		height: inherit;
-		width: 165px;
+		/* width: 165px; */
 		border-radius: 10px;
 		margin-left: 10px;
 		background-color: ${ColorPallets.highlights};

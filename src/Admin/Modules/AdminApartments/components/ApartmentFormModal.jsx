@@ -39,10 +39,17 @@ const style = {
 	p: 4,
 };
 let controller, signal;
-const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModal, handleCloseModal, headerName, setIsLoading }) => {
+const ApartmentFormModal = ({
+	addNewApartment,
+	addNewApartmentResponse,
+	openModal,
+	handleCloseModal,
+	headerName,
+	setIsLoading,
+}) => {
 	const [errors, setErrors] = useState();
 	const [value, setValue] = useState(null);
-	const [formFields, setFormFields] = useState({
+	const initialFormFields = {
 		name: "",
 		type: "",
 		bedroom: "",
@@ -56,9 +63,9 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 		price: "",
 		images: "",
 		video: "",
-		description: "Null"
-	});
-	const [amenities, setAmenities] = useState([
+		description: "",
+	};
+	const initialAmenities = [
 		{
 			value: 1,
 			label: "Fully-furnished",
@@ -124,8 +131,10 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 			label: "Smart thermostats",
 			isChecked: false,
 		},
-	]);
-	const [coordinates, setCoordinates] = useState({lat: 0, lng: 0});
+	];
+	const [formFields, setFormFields] = useState(initialFormFields);
+	const [amenities, setAmenities] = useState(initialAmenities);
+	const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
 
 	/**
 	 * DOCUMENT: This function is used to handle value of each fields. <br>
@@ -290,7 +299,7 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 				lat: coordinates?.lat.toString(),
 				lng: coordinates?.lng.toString(),
 				amenitiesJson: JSON.stringify(filterAmenities),
-				imagesJSON
+				imagesJSON,
 			});
 			/* this will reset all the fields */
 			setIsLoading(true);
@@ -298,16 +307,20 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 	};
 
 	useEffect(() => {
-        if(addNewApartmentResponse?.isSuccess){
-            const { data } = addNewApartment;
+		if (addNewApartmentResponse?.isSuccess) {
+			const { data } = addNewApartmentResponse;
 
-            setTimeout(() => {
+			setTimeout(() => {
 				if (data?.responseType === "success") {
+					setFormFields(initialFormFields);
+					setAmenities(initialAmenities);
+					setCoordinates({ lat: 0, lng: 0 });
+					setValue(null);
 					handleCloseModal();
 				}
 			}, 2500);
-        }
-    }, [addNewApartmentResponse])
+		}
+	}, [addNewApartmentResponse]);
 
 	return (
 		<div>
@@ -472,6 +485,27 @@ const ApartmentFormModal = ({ addNewApartment, addNewApartmentResponse, openModa
 								value={formFields.unitFloor}
 								onChange={handleFieldChange}
 								size="small"
+							/>
+						</Grid>
+					</Grid>
+					<Box sx={{ marginTop: "10px", marginBottom: "20px" }}>
+						<Typography variant="h6">Apartment Description</Typography>
+						<Divider />
+					</Box>
+					<Grid container spacing={2}>
+						<Grid item xs={12}>
+							<TextField
+								id="description"
+								name="description"
+								label="Description"
+								variant="outlined"
+								fullWidth
+								error={errors?.description ? true : false}
+								helperText={errors?.description || ""}
+								value={formFields.description}
+								onChange={handleFieldChange}
+								multiline
+								rows={6}
 							/>
 						</Grid>
 					</Grid>

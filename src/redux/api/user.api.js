@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
+import { getUserState } from "../user/user.reducer.js";
+import { getToken, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: APP_CONSTANTS.URL,
-	}),
+	baseQuery: rtkFetchBaseQuery(),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		registerNewUser: builder.mutation({
@@ -28,7 +28,14 @@ export const userApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"]
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+					console.log(await queryFulfilled, 912392222)
+				} catch (err) {
+					console.log(err)
+				}
+			},
 		}),
         getPostUsers: builder.mutation({
 			query: () => ({
@@ -41,7 +48,53 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: ["Post"]
 		}),
+		loginUser: builder.mutation({
+			query: (payload) => ({
+				url: "Login/LoginUser",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+					const { data } = await queryFulfilled;
+					if(data?.result?.userCount > 0){
+						setTimeout(() => dispatch(getUserState(data)), 2500);
+					}
+				} catch (err) {
+					console.log({err})
+				}
+			},
+		}),
+		checkUserLogin: builder.mutation({
+			query: (payload) => ({
+				url: "Login/CheckUserLogin",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+					"Authorization": `Bearer ${getToken()}`
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+					const { data } = await queryFulfilled;
+					if(data?.result?.userCount > 0){
+						dispatch(getUserState(data));
+					}
+					else {
+						localStorage.removeItem("CAPSTONE_JWT_TOKEN");
+					}
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		})
 	}),
 });
 
-export const { useRegisterNewUserMutation, useGetUsersQuery, useGetPostUsersMutation } = userApi;
+export const { useRegisterNewUserMutation, useGetUsersQuery, useGetPostUsersMutation, useLoginUserMutation, useCheckUserLoginMutation } = userApi;

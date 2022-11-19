@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -8,17 +8,15 @@ import Checkbox from "@mui/material/Checkbox";
 import { Link as MUILink } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Logo from "../Navbar/Components/Logo.jsx";
-
-import { configuration } from "../../configuration.js";
-import { PublicClientApplication } from "@azure/msal-browser";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
-import useAuth from "../../hooks/useAuth.js";
+import { useLoginUserMutation } from "../../redux/api/user.api.js";
+import Loading from "../Loading/Loading.jsx";
+import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
 
 function Copyright(props) {
 	return (
@@ -41,38 +39,64 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-	const navigate = useNavigate();
-	const location = useLocation();
-	const from = location.state?.from?.pathname || "/";
-
-	const { setAuth } = useAuth();
-	const [error, setError] = useState(null);
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [user, setUser] = useState({});
-
-	const login = async () => {
-		try {
-            
-		} catch (error) {
-			console.log(error);
-			setError(error);
-			setIsAuthenticated(false);
-			setUser({});
+	const [loginUser, loginUserResponse] = useLoginUserMutation();
+	const [isMessage, setIsMessage] = useState(false);
+	const [openModal, setOpenModal] = React.useState(false);
+	const [apiData, setApiData] = useState(undefined);
+	const [isLoading, setIsLoading] = useState(false);
+	const [errors, setErrors] = useState(null);
+	const [formFields, setFormFields] = useState({
+		username: "",
+		password: "",
+	});
+	const handleOpen = () => setOpenModal(true);
+	const handleCloseModal = () => setOpenModal(false);
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const username = formFields.username.trim();
+		const password = formFields.password.trim();
+		const error = {};
+		if (username === "") {
+			error.username = "Username is required.";
+		}
+		if (password === "") {
+			error.password = "Password is required.";
+		}
+		if (username !== "" && password !== "") {
+			setIsLoading(true);
+			setErrors({});
+			loginUser({ username, password });
+		} else {
+			setErrors(error);
 		}
 	};
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get("email"),
-			password: data.get("password"),
-		});
+	/**
+	 * DOCUMENT: This function is used to handle value of each fields. <br>
+	 * Triggered: when insert value on the fields <br>
+	 * Last Updated Date: November 15, 2022
+	 * @function
+	 * @memberOf Form
+	 * @param {} - {}
+	 * @author Mel
+	 */
+	const handleFieldChange = (event) => {
+		let {
+			target: { value, name, id },
+		} = event;
+
+		setFormFields({ ...formFields, [id || name]: value });
 	};
 
-	const handleLogout = () => {
-		publicClientApplication.logout();
-	};
+	// useEffect(() => {
+	// 	const { data } = loginUserResponse;
+	// 	setTimeout(() => {
+	// 		setIsMessage(true);
+	// 		setIsLoading(false);
+	// 		setApiData(data);
+	// 		handleCloseModal();
+	// 	}, 2500);
+	// }, [loginUserResponse]);
 
 	return (
 		<ThemeProvider theme={theme}>
@@ -92,46 +116,60 @@ export default function SignIn() {
 					</Typography>
 					<Box
 						component="form"
-						onSubmit={handleSubmit}
 						noValidate
 						sx={{ mt: 1 }}
 					>
 						<TextField
 							margin="normal"
-							required
-							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
+							autoComplete="username"
 							autoFocus
+							id="username"
+							name="username"
+							label="Username"
+							variant="outlined"
+							fullWidth
+							error={errors?.username ? true : false}
+							helperText={errors?.username || ""}
+							value={formFields.username}
+							onChange={handleFieldChange}
 						/>
 						<TextField
 							margin="normal"
-							required
-							fullWidth
+							autoComplete="password"
+							autoFocus
+							id="password"
 							name="password"
 							label="Password"
+							variant="outlined"
+							fullWidth
+							error={errors?.password ? true : false}
+							helperText={errors?.password || ""}
+							value={formFields.password}
+							onChange={handleFieldChange}
 							type="password"
-							id="password"
-							autoComplete="current-password"
 						/>
 						<FormControlLabel
 							control={<Checkbox value="remember" color="primary" />}
 							label="Remember me"
 						/>
 						<Button
-							type="submit"
 							fullWidth
 							variant="contained"
 							sx={{ mt: 3, mb: 2 }}
-							onClick={login}
+							onClick={handleSubmit}
 						>
 							Sign In
 						</Button>
 					</Box>
 				</Box>
 				<Copyright sx={{ mt: 8, mb: 4 }} />
+				<Loading isOpen={isLoading} />
+				<SnackbarAlert
+					isOpen={isMessage}
+					message={apiData?.message}
+					responseType={apiData?.responseType}
+					setIsMessage={setIsMessage}
+				/>
 			</Container>
 		</ThemeProvider>
 	);

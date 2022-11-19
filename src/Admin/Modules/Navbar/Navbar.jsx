@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -24,31 +24,21 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link, Outlet } from "react-router-dom";
+import {
+	Link,
+	Navigate,
+	Outlet,
+	redirect,
+	useNavigate,
+} from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MapsHomeWorkIcon from "@mui/icons-material/MapsHomeWork";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../../Modules/Loading/Loading.jsx";
+import { removeUserState } from "../../../redux/user/user.reducer.js";
 
 const drawerWidth = 240;
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
-const navlink = [
-	{
-		label: "Dashboard",
-		icon: <DashboardIcon />,
-		link: "/admin",
-	},
-	{
-		label: "Apartments",
-		icon: <MapsHomeWorkIcon />,
-		link: "/admin/apartments",
-	},
-	{
-		label: "Users",
-		icon: <PeopleAltIcon />,
-		link: "/admin/user",
-	},
-];
-
 const openedMixin = (theme) => ({
 	width: drawerWidth,
 	transition: theme.transitions.create("width", {
@@ -115,10 +105,33 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
+	const dispatch = useDispatch();
+	const { user } = useSelector((state) => state.user);
+	const [isLoading, setIsLoading] = useState(false);
+	const navigate = useNavigate();
 	const theme = useTheme();
-	const [open, setOpen] = React.useState(true);
-	const [anchorElNav, setAnchorElNav] = React.useState(null);
-	const [anchorElUser, setAnchorElUser] = React.useState(null);
+	const [open, setOpen] = useState(true);
+	const [anchorElNav, setAnchorElNav] = useState(null);
+	const [anchorElUser, setAnchorElUser] = useState(null);
+
+	const navlink = [
+		{
+			label: "Dashboard",
+			icon: <DashboardIcon />,
+			link: "/admin",
+		},
+		{
+			label: "Apartments",
+			icon: <MapsHomeWorkIcon />,
+			link: "/admin/apartments",
+		},
+		{
+			label: "Users",
+			icon: <PeopleAltIcon />,
+			link: "/admin/user",
+		},
+	];
+
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -132,6 +145,17 @@ export default function MiniDrawer() {
 	};
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
+	};
+
+	const handleLogout = () => {
+		localStorage.removeItem("CAPSTONE_JWT_TOKEN");
+		setIsLoading(true);
+		setTimeout(() => {
+			if (!localStorage.getItem("CAPSTONE_JWT_TOKEN")) {
+				dispatch(removeUserState());
+				navigate("/admin/signin");
+			}
+		}, 2500);
 	};
 
 	return (
@@ -159,7 +183,7 @@ export default function MiniDrawer() {
 					<Box sx={{ flexGrow: 0 }}>
 						<Tooltip title="Open settings">
 							<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-								<Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+								<Avatar alt={user?.firstName} src="#" />
 							</IconButton>
 						</Tooltip>
 						<Menu
@@ -178,11 +202,9 @@ export default function MiniDrawer() {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							{settings.map((setting) => (
-								<MenuItem key={setting} onClick={handleCloseUserMenu}>
-									<Typography textAlign="center">{setting}</Typography>
-								</MenuItem>
-							))}
+							<MenuItem onClick={handleLogout}>
+								<Typography textAlign="center">Logout</Typography>
+							</MenuItem>
 						</Menu>
 					</Box>
 				</Toolbar>
@@ -200,7 +222,7 @@ export default function MiniDrawer() {
 				<Divider />
 				<List>
 					{navlink.map((data, index) => (
-						<Link to={data.link} style={{textDecoration: "none"}}>
+						<Link to={data.link} style={{ textDecoration: "none" }}>
 							<ListItem
 								key={data.label}
 								disablePadding
@@ -232,34 +254,11 @@ export default function MiniDrawer() {
 					))}
 				</List>
 				<Divider />
-				<List>
-					{/* {["All mail", "Trash", "Spam"].map((text, index) => (
-						<ListItem key={text} disablePadding sx={{ display: "block" }}>
-							<ListItemButton
-								sx={{
-									minHeight: 48,
-									justifyContent: open ? "initial" : "center",
-									px: 2.5,
-								}}
-							>
-								<ListItemIcon
-									sx={{
-										minWidth: 0,
-										mr: open ? 3 : "auto",
-										justifyContent: "center",
-									}}
-								>
-									{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-								</ListItemIcon>
-								<ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-							</ListItemButton>
-						</ListItem>
-					))} */}
-				</List>
 			</Drawer>
 			<Box component="main" sx={{ flexGrow: 1, p: 3 }}>
 				<DrawerHeader />
 				<Outlet />
+				<Loading isOpen={isLoading} />
 			</Box>
 		</Box>
 	);

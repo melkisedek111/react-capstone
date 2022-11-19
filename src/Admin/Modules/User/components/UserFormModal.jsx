@@ -140,15 +140,14 @@ const UserFormModal = ({
 		setIsSubmitted(true);
 		/* checking for error if no, then submit */
 		if (!Object.keys(errors).length && isPasswordValid) {
-            console.log(12312312)
-			registerNewUser({...formFields, role: Number(formFields.role)});
+			registerNewUser({...formFields});
 			setIsLoading(true);
 		}
 	};
 
 	useEffect(() => {
 		if (registerNewUserResponse?.isSuccess) {
-			const { data } = registerNewUser;
+			const { data } = registerNewUserResponse;
 
 			setTimeout(() => {
 				if (data?.responseType === "success") {
@@ -160,6 +159,7 @@ const UserFormModal = ({
 						confirmPassword: "",
 						role: "",
 					});
+					setErrors({})
 					handleCloseModal();
 				}
 			}, 2500);

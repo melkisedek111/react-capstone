@@ -7,6 +7,7 @@ export const ApartmentCardContainer = styled.div`
 	overflow: hidden;
 	padding: 10px 0;
     position: relative;
+	cursor: pointer;
 	@media ${devices.mobileM} {
 		max-width: 365px;
 	}
@@ -36,7 +37,8 @@ export const ApartmentCardContainer = styled.div`
 
 	img {
 		max-width: 100%;
-		object-fit: contain;
+		min-height: 350px;
+		object-fit: fill;
 		vertical-align: middle;
 	}
 `;
@@ -50,7 +52,7 @@ export const ApartmentCardDetails = styled.div`
     position: absolute;
     display: block;
     width: 100%;
-    bottom: 10px;
+    bottom: 0;
 
 	> div:nth-child(1) {
 		display: flex;
@@ -95,15 +97,15 @@ export const ApartmentCardDetails = styled.div`
                     font-weight: lighter;
                     margin: 0;
 					@media ${devices.mobileM} {
-						font-size: 17px;
+						font-size: 15px;
 					}
 
 					@media ${devices.tablet} {
-						font-size: 17px;
+						font-size: 15px;
 					}
 
 					@media ${devices.laptop} {
-						font-size: 20px;
+						font-size: 18px;
 					}
 
 					@media ${devices.desktopM} {
@@ -126,4 +128,10 @@ export const ApartmentCardDetails = styled.div`
             vertical-align: middle;
         }
     }
+`;
+
+
+export const CardLinkContainer = styled.div`
+	text-decoration: none;
+	color: inherit;
 `;

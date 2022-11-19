@@ -10,11 +10,11 @@ const AnyReactComponent = ({ Component }) => <div><PropertyLocationDetailsPopove
 
 
 
-export default function GoogleMap() {
+export default function GoogleMap({lat, lng}) {
 	const defaultProps = {
 		center: {
-			lat: 14.5995,
-			lng: 120.9842,
+			lat: parseFloat(lat),
+			lng: parseFloat(lng),
 		},
 		zoom: 12,
 	};
@@ -27,12 +27,7 @@ export default function GoogleMap() {
 				defaultCenter={defaultProps.center}
 				defaultZoom={defaultProps.zoom}
 			>
-				<AnyReactComponent lat={14.5995} lng={120.9842} />
-				<AnyReactComponent lat={14.5770506} lng={121.02595676280009}/>
-				<AnyReactComponent lat={14.5567949} lng={121.0211226}/>
-				<AnyReactComponent lat={14.5605166} lng={121.0764343}/>
-				<AnyReactComponent lat={14.6331084} lng={121.0993541}/>
-				<AnyReactComponent lat={14.6916903} lng={120.9694534}/>
+				<AnyReactComponent lat={parseFloat(lat)} lng={parseFloat(lng)} />
 			</GoogleMapReact>
 		</GoogleMapReactContainer>
 	);

@@ -21,7 +21,7 @@ import CommonBooking from "../Commons/CommonBooking.jsx";
 import ContactUsForm from "./Components/ContactUsForm.jsx";
 import Loading from "../Loading/Loading.jsx";
 import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
-import { useAddNewMessageMutation } from "../../redux/contactUs/contactUs.api.js";
+import { useAddNewMessageMutation } from "../../redux/api/contactUs.api.js";
 
 const ContactUs = () => {
 	const [addNewMessage, addNewMessageResponse] = useAddNewMessageMutation();

@@ -57,17 +57,18 @@ const Navbar1 = () => {
 					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
 				</NavbarLinks>
 				<div>
-					<Button variant="contained"><Link to="/enquire">Enquire</Link></Button>
+					<Button variant="contained"><Link to="/enquire">Inquire</Link></Button>
 				</div>
 			</Navbar>
 			<NavbarResponsive ref={nav} >
 				<MenuIcon onClick={handleOpenNavlist} />
 				<NavbarLinks ref={nav} isShowLinks={isShowLinks} onBlur={handleCloseNavlist} tabIndex={isShowLinks ? 0 : 1}>
-					<li>Home</li>
-					<li>Apartments</li>
-					<li>Join Our Team</li>
-					<li>About</li>
-					<li><Button variant="outlined">Enquire</Button></li>
+					<li className="hvr-underline-from-center"><Link to="/">Home</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/apartments">Apartments</Link></li>
+					<li className="hvr-underline-from-center"><Link to="join-our-team">Join Our Team</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/about-us">About Us</Link></li>
+					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
+					<Button variant="contained"><Link to="/enquire">Inquire</Link></Button>
 				</NavbarLinks>
 				<Logo />
 			</NavbarResponsive>

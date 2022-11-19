@@ -105,7 +105,7 @@ const ContactUsForm = ({addNewMessage, addNewMessageResponse, setIsLoading}) => 
 						field
 					] = `Your ${label} is invalid and should include digits only.`;
 				} else if (value.length !== 11) {
-					errors[field] = `Your ${label} length should be 10.`;
+					errors[field] = `Your ${label} length should be 11.`;
 				}
 			}
 		}

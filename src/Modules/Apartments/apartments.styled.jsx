@@ -30,7 +30,7 @@ export const ApartmentsSection = styled.section`
 export const ApartmentsHeading = styled.div`
 	color: ${ColorPallets.highlights};
 	font-family: ${fontStyle.primary};
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 
 	* {
 		margin: 0;
@@ -112,3 +112,8 @@ export const WorkCardLists = styled.div`
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 `;
+
+
+export const ApartmentCards = styled.div`
+	margin-bottom: 30px;;
+`

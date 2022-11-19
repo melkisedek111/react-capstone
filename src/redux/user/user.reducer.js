@@ -4,18 +4,23 @@ import { createSlice } from '@reduxjs/toolkit'
 const userSlice = createSlice({
     name: "user",
     initialState: {
-        user: {
-            is_user: false,
-            increment: 0
-        }
+        user: {},
+        isLoggedIn: false,
     },
     reducers: {
-        increment: (state, action) => {
-            console.log(action)
-            state.increment++;
+        getUserState: (state, action) => {
+            if(action.payload?.result?.userCount){
+                state.user = action.payload?.result?.userData;
+                localStorage.setItem("CAPSTONE_JWT_TOKEN", action.payload?.result?.token);
+                state.isLoggedIn = true;
+            }
+        },
+        removeUserState:(state, action) => {
+            state.user = {};
+            state.isLoggedIn = false;
         }
     }
 })
 
-export const { increment } = userSlice.actions;
+export const { getUserState, removeUserState } = userSlice.actions;
 export default userSlice.reducer;
