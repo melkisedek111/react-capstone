@@ -19,7 +19,10 @@ export const rtkFetchBaseQuery = (isPublic = true) => {
 
 
 export const getToken = () => {
-    return localStorage.getItem("CAPSTONE_JWT_TOKEN");
+    if(localStorage.getItem("CAPSTONE_JWT_TOKEN")){
+        return localStorage.getItem("CAPSTONE_JWT_TOKEN");
+    }
+    return undefined;
 }
 
 export const jwtHeader = {

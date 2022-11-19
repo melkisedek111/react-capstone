@@ -113,7 +113,24 @@ export const apartmentApi = createApi({
 				}
 			},
 		}),
+		getHomePageApartments: builder.mutation({
+			query: (payload) => ({
+				url: "Apartment/GetHomePageApartments",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
 	}),
 });
 
-export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation } = apartmentApi;
+export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation, useGetHomePageApartmentsMutation } = apartmentApi;

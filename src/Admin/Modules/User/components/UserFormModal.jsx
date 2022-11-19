@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+import PasswordChecklist from "react-password-checklist";
 import {
 	Button,
 	Dialog,
@@ -15,8 +17,7 @@ import {
     Typography,
     Divider,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import PasswordChecklist from "react-password-checklist";
+
 
 const UserFormModal = ({
 	openModal,

@@ -385,9 +385,15 @@ export const FeaturedPropertiesSection = styled.section`
 export const FeaturedPropertiesContainer = styled.div`
 	padding: 20px;
 	text-align: center;
-	img {
-		width: 100%;
-		height: 100%;
+	> div {
+		width: 575px;
+		height: 383px;
+		text-align: center;
+		overflow: hidden;
+		> img {
+			max-height: 383px;
+			object-fit: contain;
+		}
 	}
 
 	h5 {
@@ -551,7 +557,9 @@ export const LeadersCard = styled.div`
 	}
 `;
 
-export const AOSContainer = styled.div``;
+export const AOSContainer = styled.div`
+	cursor: pointer;
+`;
 
 export const GoogleMapSection = styled.section`
 	/* width: 100vh; */

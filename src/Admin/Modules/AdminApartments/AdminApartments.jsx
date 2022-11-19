@@ -5,9 +5,7 @@ import ApartmentFormModal from "./components/ApartmentFormModal.jsx";
 import { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation } from "../../../redux/api/apartment.api.js";
 import Loading from "../../../Modules/Loading/Loading.jsx";
 import SnackbarAlert from "../../../Modules/Snackbar/SnackbarAlert.jsx";
-const rows = [
 
-];
 const columns = [
 	{ id: "name", label: "Name", minWidth: 170 },
 	{ id: "type", label: "Type", minWidth: 100 },
@@ -21,11 +19,6 @@ const columns = [
 	{ id: "unitFloor", label: "Unit Floor", minWidth: 50 },
 	{ id: "price", label: "Price", minWidth: 80 },
 ];
-
-function createData(name, code, population, size) {
-	const density = population / size;
-	return { name, code, population, size, density };
-}
 
 const AdminApartments = () => {
 	const [page, setPage] = React.useState(0);

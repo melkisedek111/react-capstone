@@ -34,10 +34,10 @@ const Apartments = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log({ getApartmentByTypeResponse });
 		if (getApartmentByTypeResponse.isLoading) {
 			setIsLoading(true);
 		}
+
 		if (getApartmentByTypeResponse?.isSuccess) {
 			const { result } = getApartmentByTypeResponse.data;
 			if (result?.data) {

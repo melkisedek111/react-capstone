@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import DoubleArrowRoundedIcon from "@mui/icons-material/DoubleArrowRounded";
 import Card from "@mui/material/Card";
@@ -63,8 +63,37 @@ import {
 
 import GoogleMap from "./Components/GoogleMap.jsx";
 import CommonBooking from "../Commons/CommonBooking.jsx";
+import { useGetHomePageApartmentsMutation } from "../../redux/api/apartment.api.js";
 
-const Home1 = () => {
+const Home = () => {
+	const [getHomePageApartments, getHomePageApartmentsResponse] =
+		useGetHomePageApartmentsMutation();
+	const [futureApartments, setFutureApartments] = useState([]);
+	const [latitude, setLatitude] = useState(undefined);
+	const [longitude, setLongitude] = useState(undefined);
+
+	const handleCoordinate = (lat, lng) => {
+		setLatitude(lat);
+		setLongitude(lng);
+	};
+
+	useEffect(() => {
+		getHomePageApartments();
+	}, []);
+
+	useEffect(() => {
+		if (getHomePageApartmentsResponse?.isSuccess) {
+			const { result } = getHomePageApartmentsResponse.data;
+			if (result?.data) {
+				if (
+					JSON.stringify(futureApartments) !==
+					JSON.stringify(result.data.apartments)
+				) {
+					setFutureApartments(result.data.apartments);
+				}
+			}
+		}
+	}, [getHomePageApartmentsResponse]);
 	return (
 		<HomeContainer>
 			<Grid container>
@@ -84,7 +113,8 @@ const Home1 = () => {
 								<h1>Find the Most Comfortable Place to Live for You.</h1>
 								<SubDescription>
 									<p>
-										This is a government projects that provides a quality homes for every citizen.
+										This is a government projects that provides a quality homes
+										for every citizen.
 									</p>
 									<Button variant="contained" endIcon={<SearchRoundedIcon />}>
 										Search Property
@@ -139,7 +169,7 @@ const Home1 = () => {
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300 }}>
+										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -156,15 +186,17 @@ const Home1 = () => {
 														fontWeight: "bold",
 													}}
 												>
-													Houses
+													Loft
 												</Typography>
 												<Typography variant="body2" color="text.secondary">
-													Lizards are a widespread group of squamate reptiles,
-													with over 6,000 species, ranging across all continents
-													except Antarctica
+													A loft apartment generally has one large, open room
+													with high ceilings. Other characteristics include
+													large, high windows, exposed brick and support beams,
+													as lofts are often found in commercial buildings that
+													have been renovated.
 												</Typography>
 											</CardContent>
-											<CardActions>
+											<CardActions sx={{display: "flex"}}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -183,7 +215,7 @@ const Home1 = () => {
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300 }}>
+										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -200,15 +232,17 @@ const Home1 = () => {
 														fontWeight: "bold",
 													}}
 												>
-													Apartments
+													Alcove Studio
 												</Typography>
 												<Typography variant="body2" color="text.secondary">
-													Lizards are a widespread group of squamate reptiles,
-													with over 6,000 species, ranging across all continents
-													except Antarctica
+													An alcove studio is the same as a traditional studio
+													but generally has an L partition in the living room.
+													In other words, there is a nook or alcove for a bed.
+													This makes the area easier to curtain or wall-off for
+													more privacy.
 												</Typography>
 											</CardContent>
-											<CardActions>
+											<CardActions sx={{display: "flex"}}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -227,7 +261,7 @@ const Home1 = () => {
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300 }}>
+										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -244,15 +278,16 @@ const Home1 = () => {
 														fontWeight: "bold",
 													}}
 												>
-													SOHO
+													Duplex
 												</Typography>
 												<Typography variant="body2" color="text.secondary">
-													Lizards are a widespread group of squamate reptiles,
-													with over 6,000 species, ranging across all continents
-													except Antarctica
+													A duplex is a multi-family home that has two units in
+													one building. Apartments in a duplex will have their
+													own entrances and often have living spaces upstairs
+													and downstairs.
 												</Typography>
 											</CardContent>
-											<CardActions>
+											<CardActions sx={{display: "flex"}}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -271,7 +306,7 @@ const Home1 = () => {
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300 }}>
+										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -291,12 +326,13 @@ const Home1 = () => {
 													Studio
 												</Typography>
 												<Typography variant="body2" color="text.secondary">
-													Lizards are a widespread group of squamate reptiles,
-													with over 6,000 species, ranging across all continents
-													except Antarctica
+													A studio apartment is a small apartment with an open
+													floor plan. It consists of a single room that combines
+													the bedroom, living room and kitchen spaces with a
+													separate room containing a complete bathroom.
 												</Typography>
 											</CardContent>
-											<CardActions>
+											<CardActions sx={{display: "flex"}}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -323,7 +359,9 @@ const Home1 = () => {
 									<FeaturedFacilitiesDescription>
 										<h2>Featured Facilities from Our Property</h2>
 										<p>
-											As we immersed ourselves to the new technologies everyday, integrating the innovative technologies to the home that provides safe and friendly homes for everyone.
+											As we immersed ourselves to the new technologies everyday,
+											integrating the innovative technologies to the home that
+											provides safe and friendly homes for everyone.
 										</p>
 										<IconWithDetailsContainer>
 											<Grid container spacing={3}>
@@ -338,7 +376,8 @@ const Home1 = () => {
 														<YardRoundedIcon />
 														<h6>ECO FRIENDLY</h6>
 														<p>
-															As we support the green projects that helps the eco system, we also provide more eco friendly homes for every residence.
+															We provide more eco friendly
+															homes for every residence.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -353,7 +392,7 @@ const Home1 = () => {
 														<SecurityRoundedIcon />
 														<h6>SECURITY</h6>
 														<p>
-															We provide a 24/7 security cameras for every homes and on standby authorities to give maximum protections to the residence.
+															24/7 security cameras and on standby authorities on site.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -368,7 +407,8 @@ const Home1 = () => {
 														<SupportAgentRoundedIcon />
 														<h6>SUPPORT</h6>
 														<p>
-															We give 24/7 support and quick response for every questions and concerns about your apartment.
+															We give 24/7 support and quick response for every
+															questions and concerns about your apartment.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -383,7 +423,8 @@ const Home1 = () => {
 														<WeekendRoundedIcon />
 														<h6>LIVING</h6>
 														<p>
-															We guarantee the high quality of living for every residence, providing the home that meets the customer's requirements and expectations.
+															Providing good quality of live that meets the
+															customer's requirements and expectations.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -405,34 +446,19 @@ const Home1 = () => {
 							<Button variant="contained">View all Properties</Button>
 						</FeaturePropertiesHeading>
 						<Grid container>
-							<Grid items xs={12} md={6} data-aos="zoom-in-up">
-								<FeaturedPropertiesContainer>
-									<img src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-									<h5>Manila</h5>
-									<h3>OMAH Luxury Apartment 5578</h3>
-								</FeaturedPropertiesContainer>
-							</Grid>
-							<Grid items xs={12} md={6} data-aos="zoom-in-up">
-								<FeaturedPropertiesContainer>
-									<img src="https://images.pexels.com/photos/276554/pexels-photo-276554.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-									<h5>Cavite</h5>
-									<h3>New Industrialist Style Home in Cavite</h3>
-								</FeaturedPropertiesContainer>
-							</Grid>
-							<Grid items xs={12} md={6} data-aos="zoom-in-up">
-								<FeaturedPropertiesContainer>
-									<img src="https://images.pexels.com/photos/2030037/pexels-photo-2030037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-									<h5>Baguio</h5>
-									<h3>Beautiful View for Rent in Baguio</h3>
-								</FeaturedPropertiesContainer>
-							</Grid>
-							<Grid items xs={12} md={6} data-aos="zoom-in-up">
-								<FeaturedPropertiesContainer>
-									<img src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-									<h5>Bonifacio Global City</h5>
-									<h3>SOHO with a Strategic Location in BGC</h3>
-								</FeaturedPropertiesContainer>
-							</Grid>
+							{futureApartments.length
+								? futureApartments.map((apartment) => (
+										<Grid items xs={12} md={6} data-aos="zoom-in-up">
+											<FeaturedPropertiesContainer>
+												<div>
+													<img src={apartment.images[0]} />
+												</div>
+												<h5>{apartment.location}</h5>
+												<h3>{apartment.name}</h3>
+											</FeaturedPropertiesContainer>
+										</Grid>
+								  ))
+								: null}
 						</Grid>
 					</FeaturedPropertiesSection>
 				</Grid>
@@ -510,25 +536,6 @@ const Home1 = () => {
 									</div>
 								</LeadersCard>
 							</AOSContainer>
-							<AOSContainer data-aos="fade-up" data-aos-duration="2500">
-								<LeadersCard className="hvr-grow hvr-underline-from-center">
-									<img src="https://images.pexels.com/photos/756484/pexels-photo-756484.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-									<div>
-										<h5>Sheikh Clarkson</h5>
-										<h6>Businessman</h6>
-										<p>
-											Fashion Institute of Technology in New York City, before
-											apprenticing for a great designer.
-										</p>
-										<div>
-											<FacebookIcon />
-											<TwitterIcon />
-											<LinkedInIcon />
-											<GoogleIcon />
-										</div>
-									</div>
-								</LeadersCard>
-							</AOSContainer>
 						</LeadersCardContainer>
 					</LeadersSection>
 				</Grid>
@@ -544,182 +551,67 @@ const Home1 = () => {
 						<Grid container>
 							<Grid item xs={12} md={6}>
 								<ProjectLocationContainer>
-									<AOSContainer data-aos="fade-right" data-aos-duration="1000">
-										<ProjectLocationChip>
-											<img src="https://images.pexels.com/photos/2079246/pexels-photo-2079246.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-											<Card>
-												<CardContent>
-													<h3>The Atherton</h3>
-													<h6>
-														Dr. A. Santos Ave., Parañaque City | Penthouse
-													</h6>
-													<Grid container>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<HotelIcon />
-																	<h6>Bedrooms</h6>
-																</div>
-																<h6>6</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<BathtubIcon />
-																	<h6>Bathrooms</h6>
-																</div>
-																<h6>6</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<CropRotateIcon />
-																	<h6>Floor area (m²)</h6>
-																</div>
-																<h6>61</h6>
-															</IconContainer>
-														</Grid>
-													</Grid>
-												</CardContent>
-											</Card>
-										</ProjectLocationChip>
-									</AOSContainer>
-									<AOSContainer data-aos="fade-right" data-aos-duration="1500">
-										<ProjectLocationChip>
-											<img src="https://images.pexels.com/photos/189333/pexels-photo-189333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-											<Card>
-												<CardContent>
-													<h3>Prisma Residences</h3>
-													<h6>
-														Pasig Boulevard, Brgy. Bagong Ilog | Deluxe Portion
-													</h6>
-													<Grid container>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<HotelIcon />
-																	<h6>Bedrooms</h6>
-																</div>
-																<h6>4</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<BathtubIcon />
-																	<h6>Bathrooms</h6>
-																</div>
-																<h6>2</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<CropRotateIcon />
-																	<h6>Floor area (m²)</h6>
-																</div>
-																<h6>55</h6>
-															</IconContainer>
-														</Grid>
-													</Grid>
-												</CardContent>
-											</Card>
-										</ProjectLocationChip>
-									</AOSContainer>
-									<AOSContainer data-aos="fade-right" data-aos-duration="2000">
-										<ProjectLocationChip>
-											<img src="https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-											<Card>
-												<CardContent>
-													<h3>Sonora Garden Residences</h3>
-													<h6>
-														Alabang–Zapote Road, Talon Tres, Las Pinas | Studio
-														House
-													</h6>
-													<Grid container>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<HotelIcon />
-																	<h6>Bedrooms</h6>
-																</div>
-																<h6>8</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<BathtubIcon />
-																	<h6>Bathrooms</h6>
-																</div>
-																<h6>2</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<CropRotateIcon />
-																	<h6>Floor area (m²)</h6>
-																</div>
-																<h6>65</h6>
-															</IconContainer>
-														</Grid>
-													</Grid>
-												</CardContent>
-											</Card>
-										</ProjectLocationChip>
-									</AOSContainer>
-									<AOSContainer data-aos="fade-right" data-aos-duration="2500">
-										<ProjectLocationChip>
-											<img src="https://images.pexels.com/photos/3797991/pexels-photo-3797991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-											<Card>
-												<CardContent>
-													<h3>The Crestmont</h3>
-													<h6>
-														Panay Ave., South Triangle, Quezon City | Double
-														Height
-													</h6>
-													<Grid container>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<HotelIcon />
-																	<h6>Bedrooms</h6>
-																</div>
-																<h6>6</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<BathtubIcon />
-																	<h6>Bathrooms</h6>
-																</div>
-																<h6>3</h6>
-															</IconContainer>
-														</Grid>
-														<Grid item xs={12} md={4}>
-															<IconContainer>
-																<div>
-																	<CropRotateIcon />
-																	<h6>Floor area (m²)</h6>
-																</div>
-																<h6>75</h6>
-															</IconContainer>
-														</Grid>
-													</Grid>
-												</CardContent>
-											</Card>
-										</ProjectLocationChip>
-									</AOSContainer>
+									{futureApartments.length
+										? futureApartments.map((apartment) => (
+												<AOSContainer
+													data-aos="fade-right"
+													data-aos-duration="1000"
+													onClick={() =>
+														handleCoordinate(
+															apartment.latitude,
+															apartment.longitude
+														)
+													}
+												>
+													<ProjectLocationChip>
+														<img src={apartment.images[0]} />
+														<Card>
+															<CardContent>
+																<h3>{apartment.name}</h3>
+																<h6>
+																	{apartment.location} | {apartment.type}
+																</h6>
+																<Grid container>
+																	<Grid item xs={12} md={4}>
+																		<IconContainer>
+																			<div>
+																				<HotelIcon />
+																				<h6>Bedrooms</h6>
+																			</div>
+																			<h6>{apartment.bedroom}</h6>
+																		</IconContainer>
+																	</Grid>
+																	<Grid item xs={12} md={4}>
+																		<IconContainer>
+																			<div>
+																				<BathtubIcon />
+																				<h6>Bathrooms</h6>
+																			</div>
+																			<h6>{apartment.bathroom}</h6>
+																		</IconContainer>
+																	</Grid>
+																	<Grid item xs={12} md={4}>
+																		<IconContainer>
+																			<div>
+																				<CropRotateIcon />
+																				<h6>Floor area (m²)</h6>
+																			</div>
+																			<h6>{apartment.superArea}</h6>
+																		</IconContainer>
+																	</Grid>
+																</Grid>
+															</CardContent>
+														</Card>
+													</ProjectLocationChip>
+												</AOSContainer>
+										  ))
+										: null}
 								</ProjectLocationContainer>
 							</Grid>
 							<Grid item xs={12} md={6}>
 								<GoogleMapContainer>
 									<AOSContainer data-aos="fade-left" data-aos-duration="1000">
-										<GoogleMap />
+										<GoogleMap lat={latitude} lng={longitude} />
 									</AOSContainer>
 								</GoogleMapContainer>
 							</Grid>
@@ -735,7 +627,10 @@ const Home1 = () => {
 								</Grid>
 								<Grid item xs={12} md={6}>
 									<h5>
-										Meet the company partners that support this government home projects. This renowned companies has already achieve their great fits on building great and comfortable homes for everyone. 
+										Meet the company partners that support this government home
+										projects. This renowned companies has already achieve their
+										great fits on building great and comfortable homes for
+										everyone.
 									</h5>
 								</Grid>
 								<Grid item xs={12} md={12}>
@@ -760,4 +655,4 @@ const Home1 = () => {
 	);
 };
 
-export default Home1;
+export default Home;

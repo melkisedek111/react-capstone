@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import _ from "hover.css";
+// import _ from "hover.css";
 
 import { ScrollerMotion } from "scroller-motion";
 
@@ -45,7 +45,6 @@ const theme = createTheme({
 const App = () => {
 	const user = useSelector((state) => state.user);
 	const location = useLocation();
-	const navigate = useNavigate();
 	const [checkLoginUser, checkLoginUserResponse] = useCheckUserLoginMutation();
 
 	useEffect(() => {
@@ -53,7 +52,7 @@ const App = () => {
 			checkLoginUser();
 		}
 	}, []);
-	console.log(location.pathname, 2929292);
+
 	return (
 		<>
 			<ThemeProvider theme={theme}>
