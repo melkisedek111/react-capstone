@@ -105,13 +105,7 @@ export const apartmentApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"],
-			async onQueryStarted(id, { dispatch, queryFulfilled }) {
-				try {
-				} catch (err) {
-					console.log(err)
-				}
-			},
+			invalidatesTags: ["Post"]
 		}),
 		getHomePageApartments: builder.mutation({
 			query: (payload) => ({
