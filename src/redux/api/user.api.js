@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import APP_CONSTANTS from "../../utils/constants/App.constants.js";
 import { getUserState } from "../user/user.reducer.js";
 import { getToken, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery: rtkFetchBaseQuery(),
+	baseQuery: fetchBaseQuery({
+		baseUrl: APP_CONSTANTS.URL,
+	}),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		registerNewUser: builder.mutation({
@@ -29,13 +30,6 @@ export const userApi = createApi({
 				},
 			}),
 			invalidatesTags: ["Post"],
-			async onQueryStarted(id, { dispatch, queryFulfilled }) {
-				try {
-					console.log(await queryFulfilled, 912392222)
-				} catch (err) {
-					console.log(err)
-				}
-			},
 		}),
         getPostUsers: builder.mutation({
 			query: () => ({
