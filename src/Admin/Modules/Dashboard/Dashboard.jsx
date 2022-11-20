@@ -1,6 +1,5 @@
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
-
 import BarChart from "./components/BarChart.jsx";
 import PieChart from "./components/PieChart.jsx";
 import Messages from "./components/Messages.jsx";
