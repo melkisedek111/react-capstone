@@ -1,4 +1,5 @@
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	cache: false,
@@ -37,6 +38,13 @@ module.exports = {
 		],
 	},
 	target: "web",
+	plugins: [
+		new CopyPlugin({
+			patterns: [
+				{ from: "public/web.config", to: "" }
+			]
+		})
+	]
 	// "jest": {
     //     "preset": "ts-jest",
     //     "testEnvironment": "node",
