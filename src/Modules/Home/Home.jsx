@@ -392,7 +392,7 @@ const Home = () => {
 														<SecurityRoundedIcon />
 														<h6>SECURITY</h6>
 														<p>
-															24/7 security cameras and on standby authorities on-site.
+															24/7 security cameras and on standby authorities on the site.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
