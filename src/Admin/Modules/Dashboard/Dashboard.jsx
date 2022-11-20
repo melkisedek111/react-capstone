@@ -12,7 +12,7 @@ import TableData from "../TableData/TableData.jsx";
 import { useGetInquiriesQuery } from "../../../redux/api/inquire.api.js";
 import moment from "moment/moment.js";
 
-import BarChart from "./components/Barchart.jsx";
+import BarChart from "./components/BarChart.jsx";
 import PieChart from "./components/PieChart.jsx";
 import Messages from "./components/Messages.jsx";
 import Inquiries from "./components/Inquiries.jsx";
