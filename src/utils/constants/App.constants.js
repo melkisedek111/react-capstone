@@ -1,5 +1,5 @@
 const APP_CONSTANTS = {
-	URL: "https://localhost:7131/api/",
+	URL: "https://aspnetbackend.azurewebsites.net/",
 };
 
 export default APP_CONSTANTS;
