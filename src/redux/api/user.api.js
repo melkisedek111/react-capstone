@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import APP_CONSTANTS from "../../utils/constants/App.constants.js";
 import { getUserState } from "../user/user.reducer.js";
 import { getToken, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
