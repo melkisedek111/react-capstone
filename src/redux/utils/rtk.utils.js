@@ -6,17 +6,10 @@ export const rtkFetchBaseQuery = (isPublic = true) => {
     return fetchBaseQuery({
         baseUrl: APP_CONSTANTS.URL,
         prepareHeaders: (headers, { getState }) => {
-            console.log({head: getState()})
-            // const token = getState().componentSlice.token;
-            // if (token) {
-            // 	headers.set("authorization", `Bearer ${token}`);
-            // }
-            console.log({headers})
             return headers;
         },
     })
 };
-
 
 export const getToken = () => {
     if(localStorage.getItem("CAPSTONE_JWT_TOKEN")){

@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
+import { jwtHeader } from "../utils/rtk.utils.js";
 
 export const apartmentApi = createApi({
 	reducerPath: "apartmentApi",
@@ -15,6 +16,7 @@ export const apartmentApi = createApi({
 				body: payload,
 				headers: {
 					"Content-type": "application/json",
+					...jwtHeader
 				},
 			}),
 			invalidatesTags: ["Post"],
@@ -24,7 +26,6 @@ export const apartmentApi = createApi({
 				url: "Apartment/GetApartments",
 				method: "GET"
 			}),
-			invalidatesTags: ["Post"],
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {
@@ -37,7 +38,6 @@ export const apartmentApi = createApi({
 				url: "Apartment/GetApartments",
 				method: "GET"
 			}),
-			invalidatesTags: ["Post"],
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {
@@ -54,7 +54,6 @@ export const apartmentApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"],
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {

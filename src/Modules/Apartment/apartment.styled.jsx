@@ -110,7 +110,7 @@ export const ApartmentHeading = styled.section`
 		justify-self: center;
 		> div {
 			background-color: rgba(255, 255, 255, 0.3);
-			width: 250px;
+			min-width: 250px;
 			height: 85px;
 			display: grid;
 			padding: 25px;
@@ -121,6 +121,7 @@ export const ApartmentHeading = styled.section`
 			}
 			h5 {
 				font-weight: lighter;
+				margin-right: 10px;
 			}
 			h4,
 			h5 {
