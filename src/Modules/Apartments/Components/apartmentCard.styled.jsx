@@ -53,6 +53,7 @@ export const ApartmentCardDetails = styled.div`
     display: block;
     width: 100%;
     bottom: 0;
+	min-height: 240px;
 
 	> div:nth-child(1) {
 		display: flex;

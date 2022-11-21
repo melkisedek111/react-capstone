@@ -24,6 +24,8 @@ import {
 	ApartmentLocationContainer,
 	ApartmentLocationSection,
 	ApartmentMediaSection,
+	ChartContainer,
+	ChartSection,
 	ImageContainer,
 	SimilarApartmentContainer,
 	SimilarApartmentSection,
@@ -39,6 +41,55 @@ import ApartmentCard from "../Apartments/Components/ApartmentCard.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetApartmentByIdMutation } from "../../redux/api/apartment.api.js";
 import Loading from "../Loading/Loading.jsx";
+
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend
+);
+
+const options = {
+	responsive: true,
+	plugins: {
+		legend: {
+			position: "top",
+		},
+		title: {
+			display: true,
+			text: "Bar Chart",
+		},
+	},
+};
+
+const labels = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+];
 
 const AMENITIES = {
 	1: (
@@ -130,6 +181,7 @@ const Apartment = () => {
 	const [similarApartments, setSimilarApartments] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const playerRef = useRef(null);
+	const [chartData, setChartData] = useState([]);
 
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
@@ -160,10 +212,15 @@ const Apartment = () => {
 					JSON.stringify(result.data.selectedApartment)
 				) {
 					setTimeout(() => {
-						const { selectedApartment, similarApartments } = result.data;
+						const {
+							selectedApartment,
+							similarApartments,
+							inquiryData,
+						} = result.data;
 						setIsLoading(false);
 						setApartment(selectedApartment);
 						setSimilarApartments(similarApartments);
+						setChartData(labels.map((month) => inquiryData[month]));
 					}, 2500);
 				}
 			} else {
@@ -173,12 +230,12 @@ const Apartment = () => {
 	}, [getApartmentByIdResponse]);
 
 	const handleNavigate = (id) => {
-		navigate(`/apartments/${id}`)
+		navigate(`/apartments/${id}`);
 		setIsLoading(true);
 		setApartment(undefined);
 		setSimilarApartments([]);
 		getApartmentById({ id });
-	}
+	};
 
 	return (
 		<ApartmentContainer>
@@ -196,7 +253,7 @@ const Apartment = () => {
 							</div>
 							<div>
 								<div>
-									<h5>Price {" "}</h5>
+									<h5>Price </h5>
 									<h4>
 										{CurrencyFormatter.format(apartment.price, { code: "PHP" })}
 									</h4>
@@ -282,16 +339,32 @@ const Apartment = () => {
 							<GoogleMap lat={apartment.latitude} lng={apartment.longitude} />
 						</ApartmentLocationContainer>
 					</ApartmentLocationSection>
+					<ChartSection>
+						<ChartContainer>
+							<h1>Inquiries Chart</h1>
+							<Bar
+								options={options}
+								data={{
+									labels,
+									datasets: [
+										{
+											label: "Number of Inquiries",
+											data: chartData,
+											backgroundColor: "rgba(59, 52, 134, 0.5)",
+										},
+									],
+								}}
+							/>
+						</ChartContainer>
+					</ChartSection>
 					<CommonBooking />
 					<SimilarApartmentSection>
 						<SimilarApartmentContainer>
 							<h1>Similar Apartments</h1>
 							<ApartmentsList>
-							{
-								similarApartments.map(data => (
-									<ApartmentCard data={data} handleNavigate={handleNavigate}/>
-								))
-							}
+								{similarApartments.map((data) => (
+									<ApartmentCard data={data} handleNavigate={handleNavigate} />
+								))}
 							</ApartmentsList>
 						</SimilarApartmentContainer>
 					</SimilarApartmentSection>

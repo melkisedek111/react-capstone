@@ -37,7 +37,7 @@ const NavbarAndFooter = () => {
 					options={{
 						particles: {
 							number: {
-								value: 4,
+								value: 3,
 								density: {
 									enable: true,
 									value_area: 800,
@@ -72,7 +72,7 @@ const NavbarAndFooter = () => {
 								},
 							},
 							size: {
-								value: 130,
+								value: 110,
 								random: false,
 								anim: {
 									enable: true,
@@ -90,7 +90,7 @@ const NavbarAndFooter = () => {
 							},
 							move: {
 								enable: true,
-								speed: 6,
+								speed: 5,
 								direction: "none",
 								random: false,
 								straight: false,
@@ -125,7 +125,7 @@ const NavbarAndFooter = () => {
 								},
 								bubble: {
 									distance: 400,
-									size: 40,
+									size: 35,
 									duration: 2,
 									opacity: 8,
 									speed: 3,
