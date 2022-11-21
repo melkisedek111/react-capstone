@@ -160,16 +160,15 @@ const Home = () => {
 								</div>
 							</InfoOneContainer>
 							<InformationCardContainer>
-								<Grid container spacing={1}>
+								<Grid container spacing={3}>
 									<Grid
 										item
 										xs={12}
-										lg={3}
 										md={3}
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
+										<Card sx={{ minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -196,7 +195,7 @@ const Home = () => {
 													have been renovated.
 												</Typography>
 											</CardContent>
-											<CardActions sx={{display: "flex"}}>
+											<CardActions sx={{ display: "flex" }}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -210,12 +209,11 @@ const Home = () => {
 									<Grid
 										item
 										xs={12}
-										lg={3}
 										md={3}
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
+										<Card sx={{ minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -242,7 +240,7 @@ const Home = () => {
 													more privacy.
 												</Typography>
 											</CardContent>
-											<CardActions sx={{display: "flex"}}>
+											<CardActions sx={{ display: "flex" }}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -256,12 +254,11 @@ const Home = () => {
 									<Grid
 										item
 										xs={12}
-										lg={3}
 										md={3}
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
+										<Card sx={{ minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -287,7 +284,7 @@ const Home = () => {
 													and downstairs.
 												</Typography>
 											</CardContent>
-											<CardActions sx={{display: "flex"}}>
+											<CardActions sx={{ display: "flex" }}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -301,12 +298,11 @@ const Home = () => {
 									<Grid
 										item
 										xs={12}
-										lg={3}
 										md={3}
 										data-aos="fade-up"
 										data-aos-duration="1000"
 									>
-										<Card sx={{ minWidth: 300, minHeight: "530px" }}>
+										<Card sx={{ minHeight: "530px" }}>
 											<CardMedia
 												component="img"
 												height="260"
@@ -332,7 +328,7 @@ const Home = () => {
 													separate room containing a complete bathroom.
 												</Typography>
 											</CardContent>
-											<CardActions sx={{display: "flex"}}>
+											<CardActions sx={{ display: "flex" }}>
 												<Button
 													size="small"
 													style={{ color: ColorPallets.highlights }}
@@ -376,8 +372,8 @@ const Home = () => {
 														<YardRoundedIcon />
 														<h6>ECO FRIENDLY</h6>
 														<p>
-															We provide more eco friendly
-															homes for every residence.
+															We provide more eco friendly homes for every
+															residence.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>
@@ -392,7 +388,8 @@ const Home = () => {
 														<SecurityRoundedIcon />
 														<h6>SECURITY</h6>
 														<p>
-															24/7 security cameras and on standby authorities on the site.
+															24/7 security cameras and on standby authorities
+															on the site.
 														</p>
 													</IconWithDetailsBox>
 												</Grid>

@@ -57,12 +57,13 @@ const Apartments = () => {
 			<ApartmentsSection>
 				{apartments.length ? (
 					apartments.map((apartment) => (
-						<ApartmentCards>
+						<ApartmentCards >
 							<ApartmentsHeading>
 								<h5>Apartments</h5>
 								<h1>{apartment.type}</h1>
 							</ApartmentsHeading>
-							<ApartmentsList>
+							<ApartmentsList data-aos="fade-up"
+										data-aos-duration="1000">
 								{apartment.data.length
 									? apartment.data.map((data) => <ApartmentCard data={data} handleNavigate={handleNavigate}/>)
 									: null}
