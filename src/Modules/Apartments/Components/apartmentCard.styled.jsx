@@ -9,7 +9,7 @@ export const ApartmentCardContainer = styled.div`
     position: relative;
 	cursor: pointer;
 	@media ${devices.mobileM} {
-		max-width: 365px;
+		min-width: 365px;
 	}
 
 	@media ${devices.tablet} {
@@ -75,9 +75,13 @@ export const ApartmentCardDetails = styled.div`
 			}
 
 			@media ${devices.tablet} {
+				font-size: 4vw;
 			}
 
 			@media ${devices.laptop} {
+				font-size: 4vw;
+			}
+			@media ${devices.desktopM} {
 				font-size: 2vw;
 			}
 		}

@@ -477,6 +477,22 @@ export const LeadersHeading = styled.div`
 			margin-bottom: 20px;
 		}
 	}
+
+	@media ${devices.mobileM} {
+		justify-content: center;
+	}
+
+	@media ${devices.tablet} {
+		justify-content: space-between;
+	}
+
+	@media ${devices.laptop} {
+		justify-content: space-between;
+	}
+
+	@media ${devices.desktopM} {
+		justify-content: space-between;
+	}
 `;
 
 export const LeadersCardContainer = styled.div`
@@ -488,6 +504,22 @@ export const LeadersCardContainer = styled.div`
 
 	.hvr-underline-from-center::before {
 		background: ${ColorPallets.highlights};
+	}
+
+	@media ${devices.mobileM} {
+		justify-content: center;
+	}
+
+	@media ${devices.tablet} {
+		justify-content: space-between;
+	}
+
+	@media ${devices.laptop} {
+		justify-content: space-between;
+	}
+
+	@media ${devices.desktopM} {
+		justify-content: space-between;
 	}
 `;
 
@@ -640,8 +672,8 @@ export const IconContainer = styled.div`
 		display: flex;
 		> h6,
 		svg {
-			margin-left: 10px;
-			font-size: 14px;
+			margin-left: 8px;
+			font-size: 13px;
 		}
 	}
 	> h6 {

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ColorPallets, devices, fontStyle } from "../../utils/constants/css.constants";
 
 export const CommonHeaderContainer = styled.div`
-	height: 40vh;
+	min-height: 40vh;
 	background-color: ${ColorPallets.highlights};
     font-family: ${fontStyle.primary};
 	* {
