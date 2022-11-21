@@ -10,8 +10,8 @@ import { Grid } from "@mui/material";
 const ApartmentCard = ({data, handleNavigate}) => {
 
 	return (
-		<ApartmentCardContainer onClick={() => handleNavigate(data.id)}>
-			<img src={data.images[0]} className="hvr-grow " />
+		<ApartmentCardContainer className="hvr-grow" onClick={() => handleNavigate(data.id)}>
+			<img src={data.images[0]}  />
 			<ApartmentCardDetails>
 				<div>
 					<h6>{data.type}</h6>

@@ -290,7 +290,6 @@ export const ApartmentAmenitiesContainer = styled.div`
 
 		@media ${devices.mobileM} {
 			grid-template-columns: 1fr;
-
 		}
 
 		@media ${devices.tablet} {
@@ -350,6 +349,32 @@ export const SimilarApartmentSection = styled.section`
 `;
 
 export const SimilarApartmentContainer = styled.div`
+	h1 {
+		color: ${ColorPallets.highlights};
+		${DefaultHeadingStyle};
+	}
+	@media ${devices.mobileM} {
+		padding: 20px;
+	}
+
+	@media ${devices.tablet} {
+		padding: 20px;
+	}
+
+	@media ${devices.laptop} {
+		padding: 50px 100px;
+	}
+
+	@media ${devices.desktopM} {
+		padding: 50px 400px;
+	}
+`;
+
+export const ChartSection = styled.section`
+	background-color: rgba(255, 255, 255, 0.75);
+`;
+
+export const ChartContainer = styled.div`
 	h1 {
 		color: ${ColorPallets.highlights};
 		${DefaultHeadingStyle};
