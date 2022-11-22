@@ -86,7 +86,7 @@ const Apartments = () => {
 	}, [getApartmentByTypeResponse]);
 	return (
 		<ApartmentsContainer>
-			<CommonHeader text="Our Apartments" />
+			<CommonHeader text="Our Apartmentsssss" />
 			<ApartmentsSection>
 				<TextField
 					fullWidth
