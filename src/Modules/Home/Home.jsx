@@ -64,6 +64,7 @@ import {
 import GoogleMap from "./Components/GoogleMap.jsx";
 import CommonBooking from "../Commons/CommonBooking.jsx";
 import { useGetHomePageApartmentsMutation } from "../../redux/api/apartment.api.js";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 	const [getHomePageApartments, getHomePageApartmentsResponse] =
@@ -440,7 +441,7 @@ const Home = () => {
 								<h1>Featured Properties</h1>
 								<p>Explore the perfect place to spend a great property.</p>
 							</div>
-							<Button variant="contained">View all Properties</Button>
+							<Button variant="contained" to="/apartments" component={Link}>View all Apartments</Button>
 						</FeaturePropertiesHeading>
 						<Grid container>
 							{futureApartments.length
@@ -591,7 +592,7 @@ const Home = () => {
 																		<IconContainer>
 																			<div>
 																				<CropRotateIcon />
-																				<h6>Floor area (m²)</h6>
+																				<h6>Area (m²)</h6>
 																			</div>
 																			<h6>{apartment.superArea}</h6>
 																		</IconContainer>

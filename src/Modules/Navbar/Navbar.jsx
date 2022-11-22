@@ -68,7 +68,6 @@ const Navbar1 = () => {
 					<li className="hvr-underline-from-center"><Link to="join-our-team">Join Our Team</Link></li>
 					<li className="hvr-underline-from-center"><Link to="/about-us">About Us</Link></li>
 					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
-					<Button variant="contained"><Link to="/enquire">Inquire</Link></Button>
 				</NavbarLinks>
 				<Logo />
 			</NavbarResponsive>

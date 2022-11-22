@@ -55,10 +55,12 @@ export const ApartmentsList = styled.div`
 	gap: 10px;
 	@media ${devices.mobileM} {
 		grid-template-columns: 1fr;
+		
 	}
 
 	@media ${devices.tablet} {
 		grid-template-columns: 1fr 1fr;
+		justify-items: center;
 	}
 
 	@media ${devices.laptop} {

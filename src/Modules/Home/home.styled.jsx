@@ -412,7 +412,11 @@ export const FeaturePropertiesHeading = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
-	button {
+	a {
+		text-decoration: none;
+		color: inherit !important;
+	}
+	a {
 		width: 230px;
 		height: 60px;
 		border-radius: 10px;
@@ -613,7 +617,7 @@ export const GoogleMapSection = styled.section`
 	}
 
 	@media ${devices.desktopM} {
-		padding: 50px 400px 0 400px;
+		padding: 50px 400px 50px 400px;
 	}
 `;
 
