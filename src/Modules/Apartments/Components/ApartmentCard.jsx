@@ -15,7 +15,7 @@ const ApartmentCard = ({data, handleNavigate}) => {
 			<ApartmentCardDetails>
 				<div>
 					<h6>{data.type}</h6>
-					<h6>Apartment</h6>
+					<h6>{data.name}</h6>
 				</div>
 				<div>
                     <h1>{CurrencyFormatter.format(data.price, { code: 'PHP' })}</h1>

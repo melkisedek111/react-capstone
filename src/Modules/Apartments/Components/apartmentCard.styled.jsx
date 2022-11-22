@@ -62,6 +62,9 @@ export const ApartmentCardDetails = styled.div`
 		h6 {
 			font-weight: lighter;
 		}
+		> h6:nth-child(2){
+			font-weight: bold;
+		}
         padding: 10px 0;
 	}
 

@@ -19,7 +19,6 @@ import Loading from "../Loading/Loading.jsx";
 import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
 import FormStepper from "./Components/FormStepper.jsx";
 
-
 const JoinOurTeam = () => {
 	const [addNewJoiner, addNewJoinerResponse] = useAddNewJoinerMutation();
 	const [isMessage, setIsMessage] = useState(false);
@@ -69,29 +68,41 @@ const JoinOurTeam = () => {
 						<Grid item xs={12} md={6}>
 							<h1>Join the Utopia.gov team now.</h1>
 						</Grid>
-						<Grid item xs={12} md={6}>
+						<Grid item xs={12} md={6} style={{ textAlign: "justify" }}>
 							<div>
 								<h3>Incentives</h3>
 								<p>
-									Praesent sapien massa, convallis a pellentesque nec, egestas
-									non nisi. Nulla porttitor accumsan tincidunt. Mauris blandit
-									aliquet elit, eget tincidunt nibh pulvinar a.
+									If you are looking for a company that offers great incentives
+									to join, then look no further! Our company offers a variety of
+									incentive programs that are designed to help you save money
+									and make the most of your membership. From discounts on
+									products and services to exclusive access to special events,
+									we have something for everyone.
 								</p>
 							</div>
 							<div>
 								<h3>Benefits</h3>
 								<p>
-									Praesent sapien massa, convallis a pellentesque nec, egestas
-									non nisi. Nulla porttitor accumsan tincidunt. Mauris blandit
-									aliquet elit, eget tincidunt nibh pulvinar a.
+									The benefits of joining our company are many and varied, but
+									most importantly, you will be joining a team of passionate,
+									driven individuals who are committed to making a difference.
+									We offer competitive salaries and benefits packages, as well
+									as a supportive and collaborative work environment. You will
+									also have the opportunity to work on cutting-edge projects
+									that are making a positive impact in the world. If you are
+									looking for a place to grow and make a difference, then our
+									company is the right fit for you.
 								</p>
 							</div>
 							<div>
 								<h3>Insurance</h3>
 								<p>
-									Praesent sapien massa, convallis a pellentesque nec, egestas
-									non nisi. Nulla porttitor accumsan tincidunt. Mauris blandit
-									aliquet elit, eget tincidunt nibh pulvinar a.
+									There are many reasons to join our company, but one of the
+									most important is our insurance benefits. We offer a
+									comprehensive package that includes health, dental, and life
+									insurance, as well as a retirement savings plan. Our insurance
+									is top-quality and affordable, so you can rest assured that
+									you and your family are covered.
 								</p>
 							</div>
 						</Grid>
@@ -105,7 +116,11 @@ const JoinOurTeam = () => {
 							<h1>Fill up the form now to join.</h1>
 						</Grid>
 						<Grid item xs={12} md={6}>
-							<FormStepper addNewJoiner={addNewJoiner} addNewJoinerResponse={addNewJoinerResponse} setIsLoading={setIsLoading}/>
+							<FormStepper
+								addNewJoiner={addNewJoiner}
+								addNewJoinerResponse={addNewJoinerResponse}
+								setIsLoading={setIsLoading}
+							/>
 						</Grid>
 					</Grid>
 				</FormContainer>
