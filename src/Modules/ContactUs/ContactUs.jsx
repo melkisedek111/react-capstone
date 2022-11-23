@@ -52,7 +52,11 @@ const ContactUs = () => {
 							<Card sx={{ padding: "30px 20px", minHeight: "630px" }}>
 								<CardContent>
 									<h2>Fill-up the form.</h2>
-									<ContactUsForm addNewMessage={addNewMessage} addNewMessageResponse={addNewMessageResponse} setIsLoading={setIsLoading}/>
+									<ContactUsForm
+										addNewMessage={addNewMessage}
+										addNewMessageResponse={addNewMessageResponse}
+										setIsLoading={setIsLoading}
+									/>
 								</CardContent>
 							</Card>
 						</Grid>
@@ -62,8 +66,9 @@ const ContactUs = () => {
 									<GetInTouchContainer>
 										<h2>Get in touch.</h2>
 										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-											sed do eiusmod tempor incididunt.
+											If you're interested in buying or selling a home, we'd
+											love to help! Please give us a call or send us an email
+											and we'll be happy to answer any of your questions.
 										</p>
 										<div>
 											<div>

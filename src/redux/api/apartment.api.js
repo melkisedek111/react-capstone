@@ -70,7 +70,6 @@ export const apartmentApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"],
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {
@@ -79,15 +78,14 @@ export const apartmentApi = createApi({
 			},
 		}),
 		getApartmentByType: builder.mutation({
-			query: () => ({
+			query: (payload = {page: 0}) => ({
 				url: "Apartment/GetApartmentsGroupByType",
 				method: "POST",
-				body: {},
+				body: payload,
 				headers: {
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"],
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {
@@ -104,7 +102,6 @@ export const apartmentApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"]
 		}),
 		getHomePageApartments: builder.mutation({
 			query: (payload) => ({
@@ -115,7 +112,22 @@ export const apartmentApi = createApi({
 					"Content-type": "application/json",
 				},
 			}),
-			invalidatesTags: ["Post"],
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
+		getFilteredApartments: builder.mutation({
+			query: (payload) => ({
+				url: "Apartment/GetFilteredApartments",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
 			async onQueryStarted(id, { dispatch, queryFulfilled }) {
 				try {
 				} catch (err) {
@@ -126,4 +138,4 @@ export const apartmentApi = createApi({
 	}),
 });
 
-export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation, useGetHomePageApartmentsMutation } = apartmentApi;
+export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation, useGetHomePageApartmentsMutation, useGetFilteredApartmentsMutation } = apartmentApi;

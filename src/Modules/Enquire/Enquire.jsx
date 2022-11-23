@@ -22,8 +22,10 @@ import { useGetApartmentsByFieldsMutation } from "../../redux/api/apartment.api.
 import { useAddNewInquiryMutation } from "../../redux/api/inquire.api.js";
 import Loading from "../Loading/Loading.jsx";
 import SnackbarAlert from "../Snackbar/SnackbarAlert.jsx";
+import { useLocation } from "react-router-dom";
 
 const Enquire = () => {
+	const location = useLocation();
 	const [getApartmentsByField, getApartmentsByFieldResponse] =
 		useGetApartmentsByFieldsMutation();
 	const [addNewInquiry, addNewInquiryResponse] = useAddNewInquiryMutation();
@@ -109,7 +111,7 @@ const Enquire = () => {
 				label: "Message",
 			},
 		};
-		console.log({ fields, formFields });
+
 		/* validation for only letter and spaces */
 		const alphabetValidation = /^[a-zA-Z\s]*$/;
 
@@ -123,7 +125,10 @@ const Enquire = () => {
 		/* this loop is used to iterate each of the default fields to check for errors and validations */
 		for (const field in fields) {
 			const { type, label } = fields[field];
-			const value = typeof formFields[field] === 'string' ? formFields[field]?.trim() : formFields[field];
+			const value =
+				typeof formFields[field] === "string"
+					? formFields[field]?.trim()
+					: formFields[field];
 
 			/* check for empty value */
 			if (!value) {
@@ -177,6 +182,24 @@ const Enquire = () => {
 	};
 
 	useEffect(() => {
+		if (location?.state?.type) {
+			console.log(location?.state?.type);
+			getApartmentsByField({ type: location?.state?.type });
+		}
+	}, []);
+
+	useEffect(() => {
+		if (getApartmentsByFieldResponse?.isSuccess) {
+			const { result } = getApartmentsByFieldResponse.data;
+			setApartmentNames(result);
+			if(location?.state?.type){
+				console.log(location?.state?.type, 292929)
+				setFormFields({...formFields, apartmentType: location?.state?.type, apartmentId: location?.state?.id})
+			}
+		}
+	}, [getApartmentsByFieldResponse]);
+
+	useEffect(() => {
 		if (addNewInquiryResponse?.isSuccess) {
 			const { data } = addNewInquiryResponse;
 
@@ -201,12 +224,6 @@ const Enquire = () => {
 		}
 	}, [addNewInquiryResponse]);
 
-	useEffect(() => {
-		if (getApartmentsByFieldResponse?.isSuccess) {
-			const { result } = getApartmentsByFieldResponse.data;
-			setApartmentNames(result);
-		}
-	}, [getApartmentsByFieldResponse]);
 	return (
 		<EnquireContainer>
 			<CommonHeader

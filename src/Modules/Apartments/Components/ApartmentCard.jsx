@@ -6,12 +6,14 @@ import CurrencyFormatter from "currency-formatter";
 
 import { ApartmentCardContainer, ApartmentCardDetails } from "./apartmentCard.styled.jsx";
 import { Grid } from "@mui/material";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ApartmentCard = ({data, handleNavigate}) => {
 
 	return (
 		<ApartmentCardContainer className="hvr-grow" onClick={() => handleNavigate(data.id)}>
-			<img src={data.images[0]}  />
+			<LazyLoadImage src={data.images[0]} effect="blur"  />
 			<ApartmentCardDetails>
 				<div>
 					<h6>{data.type}</h6>
