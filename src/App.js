@@ -35,6 +35,7 @@ import RequireAuth from "./Modules/RequireAuth/RequireAuth.jsx";
 import User from "./Admin/Modules/User/User.jsx";
 import { useSelector } from "react-redux";
 import { useCheckUserLoginMutation } from "./redux/api/user.api.js";
+import NotFound from "./Modules/NotFound/NotFound.jsx";
 
 const theme = createTheme({
 	typography: {
@@ -70,7 +71,8 @@ const App = () => {
 						<Route exact path="/about-us" element={<AboutUs />} />
 						<Route exact path="/join-our-team" element={<JoinOurTeam />} />
 						<Route exact path="/contact-us" element={<ContactUs />} />
-						<Route exact path="/enquire" element={<Enquire />} />
+						<Route exact path="/inquire" element={<Enquire />} />
+						<Route path="*" element={<NotFound />} />
 					</Route>
 					<Route
 						element={
@@ -90,7 +92,6 @@ const App = () => {
 					<Route exact path="/admin/signin" element={
 							user?.user?.role ? <Navigate to={location.pathname !== "/admin/signin" ? location.pathname : "/admin"} /> : <SignIn />
 						} />
-					<Route path="*" element={<></>} />
 				</Routes>
 			</ThemeProvider>
 		</>

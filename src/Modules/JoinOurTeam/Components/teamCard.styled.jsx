@@ -23,9 +23,9 @@ export const ImageWithIconContainer = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 376px;
-	width: 360px;
+	width: 340px;
 	max-height: 376px;
-	max-width: 360px;
+	max-width: 340px;
     position: relative;
 
     > div {

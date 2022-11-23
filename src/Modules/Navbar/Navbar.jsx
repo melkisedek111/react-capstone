@@ -57,7 +57,7 @@ const Navbar1 = () => {
 					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
 				</NavbarLinks>
 				<div>
-					<Button variant="contained"><Link to="/enquire">Inquire</Link></Button>
+					<Button variant="contained"><Link to="/inquire">Inquire</Link></Button>
 				</div>
 			</Navbar>
 			<NavbarResponsive ref={nav} >

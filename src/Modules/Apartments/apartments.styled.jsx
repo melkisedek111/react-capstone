@@ -119,3 +119,11 @@ export const WorkCardLists = styled.div`
 export const ApartmentCards = styled.div`
 	margin-bottom: 30px;;
 `
+
+
+export const SearchContainer = styled.div`
+	margin-bottom: 30px;
+	button {
+		height: 100%;
+	}
+`;
