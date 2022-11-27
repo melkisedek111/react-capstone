@@ -7,6 +7,19 @@ import { inquireApi } from "./api/inquire.api.js";
 import { userApi } from "./api/user.api.js";
 import errorSlice from "./global/error.slice.js";
 
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from 'redux-persist';
+import storageSession from 'reduxjs-toolkit-persist/lib/storage/session'
+
+const persistConfig = {
+    key: "root",
+    storage,
+    version: 1
+}
+
+const persistUserReducer = persistReducer(persistConfig, userReducer);
+
+
 export default combineReducers({
     [joinerApi.reducerPath]: joinerApi.reducer,
     [messageApi.reducerPath]: messageApi.reducer,
@@ -14,5 +27,5 @@ export default combineReducers({
     [inquireApi.reducerPath]: inquireApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     error: errorSlice,
-    user: userReducer
+    user: persistUserReducer
 });

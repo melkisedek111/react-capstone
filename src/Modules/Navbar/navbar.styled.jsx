@@ -16,14 +16,12 @@ const DefaultButtonStyle = css`
 `;
 
 const NavbarLinksDefault = css`
-	> li {
-		> a {
-			text-decoration: none;
-			color: #fff;
-			:visited,
-			:active {
-				color: inherit;
-			}
+	a {
+		text-decoration: none;
+		color: #fff;
+		:visited,
+		:active {
+			color: inherit;
 		}
 	}
 	${(props) =>
@@ -39,7 +37,7 @@ const NavbarLinksDefault = css`
 			z-index: 10;
 			top: 100%;
 
-			> li {
+			a {
 				.hvr-sweep-to-right::before {
 					background: #7743db;
 				}
@@ -54,12 +52,11 @@ const NavbarLinksDefault = css`
 					background-color: ${ColorPallets.highlights};
 					color: #fff;
 				}
-
-				> a {
-					color: red;
-					text-decoration: none;
-					padding: 0 5px;
-				}
+			}
+			a {
+				color: red;
+				text-decoration: none;
+				padding: 0 5px;
 			}
 		`}
 `;
@@ -81,7 +78,7 @@ export const NavbarContactContainer = styled.div`
 		}
 
 		@media ${devices.tablet} {
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 1fr 1fr;
 			padding: 20px 400px;
 			> div {
 				justify-content: center;
@@ -173,7 +170,7 @@ export const Navbar = styled.div`
 	}
 `;
 
-export const NavbarLinks = styled.ul`
+export const NavbarLinks = styled.div`
 	text-decoration: none;
 	list-style: none;
 	display: flex;
@@ -204,14 +201,17 @@ export const NavbarResponsive = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	>div:nth-child(3) {
+		padding-right: 20px;
+	}
 	svg {
 		color: #fff;
 		font-size: 50px;
-		padding-left: 20px;
 		cursor: pointer;
+		padding-left: 20px;
 	}
-	> div {
-		padding-right: 20px;
+	a {
+		padding: 10px 0;
 	}
 	@media ${devices.mobileM} {
 		display: flex;

@@ -1,8 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Grid, Typography, Button, Paper,Table,TableHead, TableRow, TableCell, TableBody, TablePagination, TableContainer} from "@mui/material";
+import {
+	Divider,
+	Grid,
+	Typography,
+	Button,
+	Paper,
+	Table,
+	TableHead,
+	TableRow,
+	TableCell,
+	TableBody,
+	TablePagination,
+	TableContainer,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import ApartmentFormModal from "./components/ApartmentFormModal.jsx";
-import { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation } from "../../../redux/api/apartment.api.js";
+import {
+	useAddNewApartmentMutation,
+	useGetApartmentsQuery,
+	useGetPostApartmentsMutation,
+} from "../../../redux/api/apartment.api.js";
 import Loading from "../../../Modules/Loading/Loading.jsx";
 import SnackbarAlert from "../../../Modules/Snackbar/SnackbarAlert.jsx";
 
@@ -27,10 +44,11 @@ const AdminApartments = () => {
 	const [isMessage, setIsMessage] = useState(false);
 	const [apiData, setApiData] = useState(undefined);
 	const [isLoading, setIsLoading] = useState(false);
-	const [addNewApartment, addNewApartmentResponse] = useAddNewApartmentMutation();
+	const [addNewApartment, addNewApartmentResponse] =
+		useAddNewApartmentMutation();
 	const [apartments, setApartments] = useState([]);
-	const [getPostApartments, getPostApartmentsResponse] = useGetPostApartmentsMutation();
-
+	const [getPostApartments, getPostApartmentsResponse] =
+		useGetPostApartmentsMutation();
 	const getApartments = useGetApartmentsQuery();
 	const handleOpen = () => setOpenModal(true);
 	const handleCloseModal = () => setOpenModal(false);
@@ -52,28 +70,24 @@ const AdminApartments = () => {
 				setIsLoading(false);
 				setApiData(data);
 				handleCloseModal();
-
 			}, 2500);
 		}
 	}, [addNewApartmentResponse]);
 
 	useEffect(() => {
-		
-		if(getApartments?.data !== undefined){
+		if (getApartments?.data !== undefined) {
 			const { result } = getApartments.data;
 			setApartments(result);
 		}
-		
-		if(getPostApartmentsResponse?.isSuccess){
+
+		if (getPostApartmentsResponse?.isSuccess) {
 			const { result } = getPostApartmentsResponse.data;
-			if(JSON.stringify(apartments) !== JSON.stringify(result)){
+			if (JSON.stringify(apartments) !== JSON.stringify(result)) {
 				setApartments(result);
 			}
 		}
 	}, [getApartments, getPostApartmentsResponse]);
 
-
-	
 	return (
 		<Grid container spacing={3}>
 			<Grid item xs={12} sx={{ marginBottom: "20px" }}>

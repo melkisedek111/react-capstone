@@ -20,11 +20,14 @@ const Navbar1 = () => {
 	const nav = useRef();
 	
 	const handleCloseNavlist = () => {
-		setIsShowLinks(!isShowLinks)
+		if(isShowLinks){
+			setIsShowLinks(false);
+		}
 	}
 
 	const handleOpenNavlist = () => {
 		nav.current.focus();
+		console.log(123123123, isShowLinks)
 		setIsShowLinks(!isShowLinks)
 	}
 
@@ -41,20 +44,20 @@ const Navbar1 = () => {
 						<LocalPhoneRoundedIcon />
 						<p>+274 3821 0489</p>
 					</div>
-					<div>
+					{/* <div>
 						<SearchRoundedIcon />
 						<input placeholder="Search" />
-					</div>
+					</div> */}
 				</div>
 			</NavbarContactContainer>
 			<Navbar>
 				<Logo />
 				<NavbarLinks>
-					<li className="hvr-underline-from-center"><Link to="/">Home</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/apartments">Apartments</Link></li>
-					<li className="hvr-underline-from-center"><Link to="join-our-team">Join Our Team</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/about-us">About Us</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
+					<Link to="/">Home</Link>
+					<Link to="/apartments">Apartments</Link>
+					<Link to="join-our-team">Join Our Team</Link>
+					<Link to="/about-us">About Us</Link>
+					<Link to="/contact-us">Contact Us</Link>
 				</NavbarLinks>
 				<div>
 					<Button variant="contained"><Link to="/inquire">Inquire</Link></Button>
@@ -62,12 +65,12 @@ const Navbar1 = () => {
 			</Navbar>
 			<NavbarResponsive ref={nav} >
 				<MenuIcon onClick={handleOpenNavlist} />
-				<NavbarLinks ref={nav} isShowLinks={isShowLinks} onBlur={handleCloseNavlist} tabIndex={isShowLinks ? 0 : 1}>
-					<li className="hvr-underline-from-center"><Link to="/">Home</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/apartments">Apartments</Link></li>
-					<li className="hvr-underline-from-center"><Link to="join-our-team">Join Our Team</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/about-us">About Us</Link></li>
-					<li className="hvr-underline-from-center"><Link to="/contact-us">Contact Us</Link></li>
+				<NavbarLinks ref={nav} isShowLinks={isShowLinks} tabIndex={isShowLinks ? 0 : 1}>
+					<Link to="/" onClick={handleOpenNavlist}>Home</Link>
+					<Link to="/apartments" onClick={handleOpenNavlist}>Apartments</Link>
+					<Link to="join-our-team" onClick={handleOpenNavlist}>Join Our Team</Link>
+					<Link to="/about-us" onClick={handleOpenNavlist}>About Us</Link>
+					<Link to="/contact-us" onClick={handleOpenNavlist}>Contact Us</Link>
 				</NavbarLinks>
 				<Logo />
 			</NavbarResponsive>
