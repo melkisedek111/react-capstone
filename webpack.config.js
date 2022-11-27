@@ -44,7 +44,20 @@ module.exports = {
 				{ from: "public/web.config", to: "" }
 			]
 		})
-	]
+	],
+	// resolve: {
+	// 	alias: {
+	// 	  config$: './configs/app-config.js',
+	// 	  react: './vendor/react-master',
+	// 	},
+	// 	extensions: ['.js', '.jsx'],
+	// 	modules: [
+	// 	  'node_modules',
+	// 	  'bower_components',
+	// 	  'shared',
+	// 	  '/shared/vendor/modules',
+	// 	],
+	//   },
 	// "jest": {
     //     "preset": "ts-jest",
     //     "testEnvironment": "node",

@@ -53,14 +53,19 @@ export const ApartmentsHeading = styled.div`
 export const ApartmentsList = styled.div`
 	display: grid;
 	gap: 10px;
+	> div {
+		align-self: center;
+		justify-self: center;
+	}
 	@media ${devices.mobileM} {
 		grid-template-columns: 1fr;
-		
+		align-items: center;
+		justify-content: center;
 	}
 
 	@media ${devices.tablet} {
 		grid-template-columns: 1fr 1fr;
-		justify-items: center;
+		align-items: center;
 	}
 
 	@media ${devices.laptop} {

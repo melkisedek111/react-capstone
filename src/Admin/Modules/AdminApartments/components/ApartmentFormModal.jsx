@@ -25,19 +25,13 @@ import GooglePlacesAutocomplete, {
 	geocodeByAddress,
 	getLatLng,
 } from "react-google-places-autocomplete";
+import Slider from "react-styled-carousel";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { PreviewImageContainer } from "./apartmentFormModal.styled.jsx";
+import PhotoViewer from "../../../../Modules/Apartment/Components/PhotoViewer.jsx";
 
-const style = {
-	position: "absolute",
-	top: "50%",
-	left: "50%",
-	transform: "translate(-50%, -50%)",
-	width: 400,
-	bgcolor: "background.paper",
-	border: "2px solid #000",
-	boxShadow: 24,
-	p: 4,
-};
-let controller, signal;
+
 const ApartmentFormModal = ({
 	addNewApartment,
 	addNewApartmentResponse,
@@ -46,8 +40,11 @@ const ApartmentFormModal = ({
 	headerName,
 	setIsLoading,
 }) => {
-	const [errors, setErrors] = useState();
+	const [errors, setErrors] = useState({});
+	const [isImageNotValid, setIsImageNotValid] = useState(false);
 	const [value, setValue] = useState(null);
+	const [previewImages, setPreviewImages] = useState([]);
+	const [images, setImages] = useState([]);
 	const initialFormFields = {
 		name: "",
 		type: "",
@@ -60,7 +57,6 @@ const ApartmentFormModal = ({
 		unitFloor: "",
 		location: "",
 		price: "",
-		images: "",
 		video: "",
 		description: "",
 	};
@@ -134,6 +130,10 @@ const ApartmentFormModal = ({
 	const [formFields, setFormFields] = useState(initialFormFields);
 	const [amenities, setAmenities] = useState(initialAmenities);
 	const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+	const responsive = [
+		{ breakPoint: 1280, cardsToShow: 4 }, // this will be applied if screen size is greater than 1280px. cardsToShow will become 4.
+		{ breakPoint: 760, cardsToShow: 2 },
+	];
 
 	/**
 	 * DOCUMENT: This function is used to handle value of each fields. <br>
@@ -174,6 +174,30 @@ const ApartmentFormModal = ({
 		});
 
 		setAmenities(modifiedAmenities);
+	};
+
+	/**
+	 * DOCUMENT: This function is used to validate images. <br>
+	 * Triggered: when submitting a form <br>
+	 * Last Updated Date: November 5, 2022
+	 * @function
+	 * @memberOf Form
+	 * @param {} - {}
+	 * @author Mel
+	 */
+	const handleImageChange = (event) => {
+		let files = [];
+		
+		for (let index = 0; index < event.target.files.length; index++) {
+			if(!event.target.files[index].name.match(/\.(jpg|jpeg|png)$/)){
+				setIsImageNotValid(true);
+				return;
+			}
+			files.push(URL.createObjectURL(event.target.files[index]));
+		}
+
+		setPreviewImages(files);
+		setImages(event.target.files);
 	};
 
 	/**
@@ -232,10 +256,6 @@ const ApartmentFormModal = ({
 				type: "number",
 				label: "Price",
 			},
-			images: {
-				type: "mixed",
-				label: "Images",
-			},
 			video: {
 				type: "mixed",
 				label: "Video",
@@ -281,6 +301,11 @@ const ApartmentFormModal = ({
 				}
 			}
 		}
+
+		if(!images.length){
+			setIsImageNotValid(true);
+		}
+
 		setErrors(errors);
 
 		return errors;
@@ -292,14 +317,24 @@ const ApartmentFormModal = ({
 		/* checking for error if no, then submit */
 		if (!Object.keys(errors).length) {
 			const filterAmenities = amenities.filter((amenity) => amenity.isChecked);
-			const imagesJSON = JSON.stringify(formFields.images.split(","));
-			await addNewApartment({
+
+			const formData = new FormData();
+			const form = {
 				...formFields,
 				lat: coordinates?.lat.toString(),
 				lng: coordinates?.lng.toString(),
-				amenitiesJson: JSON.stringify(filterAmenities),
-				imagesJSON,
-			});
+				amenitiesJson: JSON.stringify(filterAmenities)
+			};
+
+			for(let key in form){
+				formData.append(key, form[key]);
+			}
+
+			for(let image of images){
+				formData.append("images", image);
+			}
+			
+			await addNewApartment(formData);
 			/* this will reset all the fields */
 			setIsLoading(true);
 		}
@@ -568,7 +603,7 @@ const ApartmentFormModal = ({
 							/>
 						</Grid>
 						<Grid item xs={6}>
-							<TextField
+							{/* <TextField
 								id="images"
 								name="images"
 								label="Image Links"
@@ -582,7 +617,39 @@ const ApartmentFormModal = ({
 							/>
 							<FormHelperText>
 								Please use (,) to separate multiple links
-							</FormHelperText>
+							</FormHelperText> */}
+							<Button variant="contained" component="label" fullWidth>
+								Upload Images
+								<input
+									hidden
+									accept="image/*"
+									multiple
+									type="file"
+									onChange={handleImageChange}
+								/>
+							</Button>
+							{isImageNotValid ? (
+								<FormHelperText error={isImageNotValid || false}>
+									Format invalid, Images should be either JPEG, JPG, or PNG.
+								</FormHelperText>
+							) : null}
+						</Grid>
+						<Grid item xs={12}>
+							<PreviewImageContainer>
+								<Slider responsive={responsive}>
+									{previewImages.map((src, index) => (
+										<LazyLoadImage
+											effect="blur"
+											src={src}
+											onClick={() => openImageViewer(index)}
+											key={index}
+											style={{ margin: "2px" }}
+											alt=""
+											className="image-slider"
+										/>
+									))}
+								</Slider>
+							</PreviewImageContainer>
 						</Grid>
 					</Grid>
 					<Box sx={{ marginTop: "10px", marginBottom: "20px" }}>

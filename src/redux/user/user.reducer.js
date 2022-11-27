@@ -1,23 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-
 const userSlice = createSlice({
     name: "user",
     initialState: {
         user: {},
         isLoggedIn: false,
+        JWTToken: undefined
     },
     reducers: {
         getUserState: (state, action) => {
             if(action.payload?.result?.userCount){
                 state.user = action.payload?.result?.userData;
-                localStorage.setItem("CAPSTONE_JWT_TOKEN", action.payload?.result?.token);
+                state.JWTToken =  action.payload?.result?.token;
                 state.isLoggedIn = true;
             }
         },
-        removeUserState:(state, action) => {
+        removeUserState:async (state, action) => {
             state.user = {};
             state.isLoggedIn = false;
+            state.JWTToken = undefined;
         }
     }
 })

@@ -48,53 +48,65 @@ const App = () => {
 	const location = useLocation();
 	const [checkLoginUser, checkLoginUserResponse] = useCheckUserLoginMutation();
 
-	useEffect(() => {
-		if (localStorage.getItem("CAPSTONE_JWT_TOKEN")) {
-			checkLoginUser();
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (localStorage.getItem("CAPSTONE_JWT_TOKEN")) {
+	// 		checkLoginUser();
+	// 	}
+	// }, []);
 
 	return (
-		<>
-			<ThemeProvider theme={theme}>
-				<Routes>
-					<Route path="/" element={<NavbarAndFooter />}>
-						<Route exact path="/" element={<Home />} />
-						<Route path="/apartments" element={<Outlet />}>
-							<Route exact path="/apartments" element={<Apartments />} />
-							<Route
-								exact
-								path="/apartments/:apartmentId"
-								element={<Apartment />}
-							/>
-						</Route>
-						<Route exact path="/about-us" element={<AboutUs />} />
-						<Route exact path="/join-our-team" element={<JoinOurTeam />} />
-						<Route exact path="/contact-us" element={<ContactUs />} />
-						<Route exact path="/inquire" element={<Enquire />} />
-						<Route path="*" element={<NotFound />} />
+		<ThemeProvider theme={theme}>
+			<Routes>
+				<Route path="/" element={<NavbarAndFooter />}>
+					<Route exact path="/" element={<Home />} />
+					<Route path="/apartments" element={<Outlet />}>
+						<Route exact path="/apartments" element={<Apartments />} />
+						<Route
+							exact
+							path="/apartments/:apartmentId"
+							element={<Apartment />}
+						/>
 					</Route>
-					<Route
-						element={
-							<RequireAuth role={user?.user?.role} allowedRoles={[11, 10]} />
-						}
-					>
-						<Route exact path="/admin" element={<AdminNavbar />}>
-							<Route exact path="/admin" element={<Dashboard />} />
-							<Route
-								exact
-								path="/admin/apartments"
-								element={<AdminApartments />}
-							/>
-							<Route exact path="/admin/user" element={<User />} />
-						</Route>
+					<Route exact path="/about-us" element={<AboutUs />} />
+					<Route exact path="/join-our-team" element={<JoinOurTeam />} />
+					<Route exact path="/contact-us" element={<ContactUs />} />
+					<Route exact path="/inquire" element={<Enquire />} />
+					<Route path="*" element={<NotFound />} />
+				</Route>
+				<Route
+					element={
+						<RequireAuth role={user?.user?.role} allowedRoles={[11, 10]} />
+					}
+				>
+					<Route exact path="/admin" element={<AdminNavbar />}>
+						<Route exact path="/admin" element={<Dashboard />} />
+						<Route
+							exact
+							path="/admin/apartments"
+							element={<AdminApartments />}
+						/>
+						<Route exact path="/admin/user" element={<User />} />
 					</Route>
-					<Route exact path="/admin/signin" element={
-							user?.user?.role ? <Navigate to={location.pathname !== "/admin/signin" ? location.pathname : "/admin"} /> : <SignIn />
-						} />
-				</Routes>
-			</ThemeProvider>
-		</>
+				</Route>
+				<Route
+					exact
+					path="/admin/signin"
+					element={
+						user?.user?.role ? (
+							<Navigate
+								to={
+									location.pathname !== "/admin/signin"
+										? location.pathname
+										: "/admin"
+								}
+							/>
+						) : (
+							<SignIn />
+						)
+					}
+				/>
+			</Routes>
+		</ThemeProvider>
 	);
 };
 

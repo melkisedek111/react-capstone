@@ -1,12 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
-import { jwtHeader } from "../utils/rtk.utils.js";
+import { jwtHeader, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const inquireApi = createApi({
 	reducerPath: "inquireApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: APP_CONSTANTS.URL,
-	}),
+	baseQuery: rtkFetchBaseQuery(),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		addNewInquiry: builder.mutation({
@@ -14,10 +12,6 @@ export const inquireApi = createApi({
 				url: "Inquiry/AddNewInquiry",
 				method: "POST",
 				body: payload,
-				headers: {
-					"Content-type": "application/json",
-					...jwtHeader
-				},
 			}),
 			invalidatesTags: ["Post"],
 		}),
@@ -26,10 +20,6 @@ export const inquireApi = createApi({
 				url: "Inquiry/GetInquiries",
 				method: "POST",
 				body: payload,
-				headers: {
-					"Content-type": "application/json",
-					...jwtHeader
-				},
 			}),
 			invalidatesTags: ["Post"],
 		}),

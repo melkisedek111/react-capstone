@@ -1,12 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
-import { jwtHeader } from "../utils/rtk.utils.js";
+import { jwtHeader, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const messageApi = createApi({
 	reducerPath: "messageApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: APP_CONSTANTS.URL,
-	}),
+	baseQuery: rtkFetchBaseQuery(),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		addNewMessage: builder.mutation({
@@ -27,7 +25,6 @@ export const messageApi = createApi({
 				body: payload,
 				headers: {
 					"Content-type": "application/json",
-					...jwtHeader
 				},
 			}),
 			invalidatesTags: ["Post"],

@@ -1,23 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import APP_CONSTANTS from "../../utils/constants/App.constants.js";
-import { jwtHeader } from "../utils/rtk.utils.js";
+import { jwtHeader, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const apartmentApi = createApi({
 	reducerPath: "apartmentApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: APP_CONSTANTS.URL,
-	}),
+	baseQuery: rtkFetchBaseQuery(),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		addNewApartment: builder.mutation({
 			query: (payload) => ({
 				url: "Apartment/AddNewApartment",
 				method: "POST",
-				body: payload,
-				headers: {
-					"Content-type": "application/json",
-					...jwtHeader
-				},
+				body: payload
 			}),
 			invalidatesTags: ["Post"],
 		}),
@@ -135,7 +129,23 @@ export const apartmentApi = createApi({
 				}
 			},
 		}),
+		getDashboardChartData: builder.mutation({
+			query: (payload) => ({
+				url: "Apartment/GetDashboardChartData",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-type": "application/json",
+				},
+			}),
+			async onQueryStarted(id, { dispatch, queryFulfilled }) {
+				try {
+				} catch (err) {
+					console.log(err)
+				}
+			},
+		}),
 	}),
 });
 
-export const { useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation, useGetHomePageApartmentsMutation, useGetFilteredApartmentsMutation } = apartmentApi;
+export const {  useGetDashboardChartDataMutation, useAddNewApartmentMutation, useGetApartmentsQuery, useGetPostApartmentsMutation, useGetApartmentsByFieldsMutation, useGetApartmentMutation, useGetApartmentByTypeMutation, useGetApartmentByIdMutation, useGetHomePageApartmentsMutation, useGetFilteredApartmentsMutation } = apartmentApi;

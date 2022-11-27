@@ -5,9 +5,7 @@ import { getToken, rtkFetchBaseQuery } from "../utils/rtk.utils.js";
 
 export const userApi = createApi({
 	reducerPath: "userApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: APP_CONSTANTS.URL,
-	}),
+	baseQuery: rtkFetchBaseQuery(),
 	tagTypes: ["Post"],
 	endpoints: (builder) => ({
 		registerNewUser: builder.mutation({

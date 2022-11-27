@@ -386,13 +386,28 @@ export const FeaturedPropertiesContainer = styled.div`
 	padding: 20px;
 	text-align: center;
 	> div {
-		width: 575px;
-		height: 383px;
+		max-width: 575px;
+		max-height: 383px;
 		text-align: center;
 		overflow: hidden;
 		> img {
 			max-height: 383px;
 			object-fit: contain;
+			@media ${devices.mobileM} {
+				max-width: 350px;
+			}
+
+			@media ${devices.tablet} {
+				width: auto;
+			}
+
+			@media ${devices.laptop} {
+				width: auto;
+			}
+
+			@media ${devices.desktopM} {
+				width: auto;
+			}
 		}
 	}
 
