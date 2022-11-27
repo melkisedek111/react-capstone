@@ -185,7 +185,7 @@ export const FeaturedInformationSection = styled.section`
 
 export const FeaturedInformation = styled.div`
 	min-height: 100vh;
-	padding: 50px 400px 0 400px;
+	padding: 50px 400px 50px 400px;
 
 	@media ${devices.mobileM} {
 		padding: 20px;
@@ -387,26 +387,26 @@ export const FeaturedPropertiesContainer = styled.div`
 	text-align: center;
 	> div {
 		max-width: 575px;
-		max-height: 383px;
+		height: 383px;
 		text-align: center;
 		overflow: hidden;
 		> img {
-			max-height: 383px;
+			height: 383px;
 			object-fit: contain;
 			@media ${devices.mobileM} {
 				max-width: 350px;
 			}
 
 			@media ${devices.tablet} {
-				width: auto;
+				min-width: 575px;
 			}
 
 			@media ${devices.laptop} {
-				width: auto;
+				min-width: 575px;
 			}
 
 			@media ${devices.desktopM} {
-				width: auto;
+				min-width: 575px;
 			}
 		}
 	}

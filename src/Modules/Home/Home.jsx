@@ -446,7 +446,7 @@ const Home = () => {
 						<Grid container>
 							{futureApartments.length
 								? futureApartments.map((apartment) => (
-										<Grid items xs={12} md={6} data-aos="zoom-in-up">
+										<Grid key={apartment.id} items xs={12} md={6} data-aos="zoom-in-up">
 											<FeaturedPropertiesContainer>
 												<div>
 													<img src={apartment.images[0]} />
@@ -552,6 +552,7 @@ const Home = () => {
 									{futureApartments.length
 										? futureApartments.map((apartment) => (
 												<AOSContainer
+													key={apartment.id}
 													data-aos="fade-right"
 													data-aos-duration="1000"
 													onClick={() =>
