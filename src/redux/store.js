@@ -17,6 +17,17 @@ import {
 } from "redux-persist";
 
 const logger = createLogger();
+const middlewares = [
+	joinerApi.middleware,
+	messageApi.middleware,
+	apartmentApi.middleware,
+	inquireApi.middleware,
+	userApi.middleware,
+];
+
+if (process.env.NODE_ENV === "development") {
+    middlewares.push(logger);
+}
 
 export const store = configureStore({
 	reducer: RootReducer,
@@ -25,14 +36,7 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat([
-			logger,
-			joinerApi.middleware,
-			messageApi.middleware,
-			apartmentApi.middleware,
-			inquireApi.middleware,
-			userApi.middleware,
-		]),
+		}).concat(middlewares),
 });
 
 export const persistor = persistStore(store);

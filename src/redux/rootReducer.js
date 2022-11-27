@@ -19,7 +19,6 @@ const persistConfig = {
 
 const persistUserReducer = persistReducer(persistConfig, userReducer);
 
-
 export default combineReducers({
     [joinerApi.reducerPath]: joinerApi.reducer,
     [messageApi.reducerPath]: messageApi.reducer,
