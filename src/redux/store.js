@@ -19,7 +19,6 @@ import {
 const logger = createLogger();
 
 const middlewares = [
-	logger,
 	joinerApi.middleware,
 	messageApi.middleware,
 	apartmentApi.middleware,
@@ -27,9 +26,9 @@ const middlewares = [
 	userApi.middleware,
 ];
 
-// if (process.env.NODE_ENV === "development") {
-//     middlewares.push(logger);
-// }
+if (process.env.NODE_ENV === "development") {
+    middlewares.push(logger);
+}
 
 export const store = configureStore({
 	reducer: RootReducer,
