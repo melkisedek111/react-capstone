@@ -18,7 +18,7 @@ const NavbarAndFooter = () => {
 	}, []);
 	return (
 		<div>
-			{/* <div
+			<div
 				style={{
 					position: "fixed",
 					backgroundAttachment: "fixed",
@@ -145,7 +145,7 @@ const NavbarAndFooter = () => {
 						retina_detect: true,
 					}}
 				/>
-			</div> */}
+			</div>
 			<Navbar />
 			<Outlet />
 			<Footer />
