@@ -79,6 +79,7 @@ const Home = () => {
 	};
 
 	useEffect(() => {
+		document.title = "Home | Utopia.gov"
 		getHomePageApartments();
 	}, []);
 
@@ -201,6 +202,8 @@ const Home = () => {
 													size="small"
 													style={{ color: ColorPallets.highlights }}
 													endIcon={<ArrowForwardRoundedIcon />}
+													href="https://www.apartments.com/blog/what-is-a-loft-apartment"
+													target="_blank"
 												>
 													Know More
 												</Button>
@@ -246,6 +249,8 @@ const Home = () => {
 													size="small"
 													style={{ color: ColorPallets.highlights }}
 													endIcon={<ArrowForwardRoundedIcon />}
+													href="https://www.apartmenttherapy.com/what-is-an-alcove-studio-36887491"
+													target="_blank"
 												>
 													Know More
 												</Button>
@@ -290,6 +295,8 @@ const Home = () => {
 													size="small"
 													style={{ color: ColorPallets.highlights }}
 													endIcon={<ArrowForwardRoundedIcon />}
+													href="https://www.apartments.com/blog/what-is-a-duplex"
+													target="_blank"
 												>
 													Know More
 												</Button>
@@ -334,6 +341,8 @@ const Home = () => {
 													size="small"
 													style={{ color: ColorPallets.highlights }}
 													endIcon={<ArrowForwardRoundedIcon />}
+													href="https://www.apartments.com/blog/what-is-a-studio-apartment"
+													target="_blank"
 												>
 													Know More
 												</Button>
